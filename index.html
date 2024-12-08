@@ -450,7 +450,7 @@
               <div class="work-content">
                 <div class="row">
                   <div class="col-sm-8">
-                    <h2 class="w-title">Studio Big Bang</h2>
+                    <h2 class="w-title">jsp ici aussi</h2>
                     <div class="w-more">
                       <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2017</span>
                     </div>
@@ -472,43 +472,79 @@
   <!--/ Section Portfolio End /-->
 
   <!--/ Section Testimonials Star /-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="testimonial-box">
-              <div class="author-test">
-                <img src="img/testimonial-2.jpg" alt="" class="rounded-circle b-shadow-a">
-                <span class="author">Xavi Alonso</span>
-              </div>
-              <div class="content-test">
-                <p class="description lead">
-                  Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit.
-                </p>
-                <span class="comit"><i class="fa fa-quote-right"></i></span>
-              </div>
-            </div>
-            <div class="testimonial-box">
-              <div class="author-test">
-                <img src="img/testimonial-4.jpg" alt="" class="rounded-circle b-shadow-a">
-                <span class="author">Marta Socrate</span>
-              </div>
-              <div class="content-test">
-                <p class="description lead">
-                  Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit.
-                </p>
-                <span class="comit"><i class="fa fa-quote-right"></i></span>
-              </div>
-            </div>
-          </div>
+<div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
+  <div class="overlay-mf"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="testimonial-mf" class="owl-carousel owl-theme">
+          <!-- JavaScript will dynamically insert testimonials here -->
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<script>
+  // Array of quotes
+  const quotes = [
+    { 
+      author: "Linus Torvalds", 
+      quote: "Talk is cheap. Show me the code.", 
+      image: "img/testimonial-1.jpg" 
+    },
+    { 
+      author: "Grace Hopper", 
+      quote: "The most dangerous phrase in the language is, 'We've always done it this way.'", 
+      image: "img/testimonial-2.jpg" 
+    },
+    { 
+      author: "Alan Turing", 
+      quote: "Sometimes it is the people no one can imagine anything of who do the things no one can imagine.", 
+      image: "img/testimonial-3.jpg" 
+    },
+    { 
+      author: "Margaret Hamilton", 
+      quote: "Software engineering is a discipline in its own right.", 
+      image: "img/testimonial-4.jpg" 
+    },
+    { 
+      author: "Dennis Ritchie", 
+      quote: "The only way to learn a new programming language is by writing programs in it.", 
+      image: "img/testimonial-5.jpg" 
+    }
+  ];
+
+  // Function to shuffle and select random quotes
+  function getRandomQuotes(arr, count) {
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  // Select a random number of quotes to display (e.g., 2-4 quotes)
+  const randomQuotes = getRandomQuotes(quotes, Math.floor(Math.random() * 3) + 2);
+
+  // Generate HTML for each quote
+  const testimonialsContainer = document.getElementById("testimonial-mf");
+  randomQuotes.forEach(quote => {
+    const testimonialHTML = `
+      <div class="testimonial-box">
+        <div class="author-test">
+          <img src="${quote.image}" alt="" class="rounded-circle b-shadow-a">
+          <span class="author">${quote.author}</span>
+        </div>
+        <div class="content-test">
+          <p class="description lead">
+            "${quote.quote}"
+          </p>
+          <span class="comit"><i class="fa fa-quote-right"></i></span>
+        </div>
+      </div>
+    `;
+    testimonialsContainer.innerHTML += testimonialHTML;
+  });
+</script>
+
 
   
 
