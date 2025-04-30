@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>DevFolio Bootstrap Template</title>
+  <title>Portefolio Nathan Dardalhon</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap CSS File -->
@@ -20,6 +19,7 @@
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
@@ -39,7 +39,7 @@
     <div class="container">
       <a class="navbar-brand js-scroll" href="#page-top">Portfolio</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+              aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
@@ -59,12 +59,16 @@
             <a class="nav-link js-scroll" href="#work">Travaux</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link js-scroll" href="#competence">Compétences</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link js-scroll" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <!--/ Nav End /-->
 
   <!--/ Intro Skew Star /-->
@@ -624,6 +628,95 @@
   });
 </script>
 
+  <!-- Section Compétences -->
+  <section id="competence" class="competence-mf sect-pt4 route">
+    <div class="container">
+      <div class="title-box text-center mb-5">
+        <h3 class="title-a">Compétences</h3>
+        <div class="line-mf"></div>
+      </div>
+
+      <div class="row text-center">
+        <!-- Compétence 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-code fa-2x mb-3 text-primary"></i>
+              <h5 class="card-title">Appliquer une démarche de suivi de projet en fonction des besoins métiers des clients et des utilisateurs</h5>
+              <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalWeb">Voir plus</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compétence 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-database fa-2x mb-3 text-success"></i>
+              <h5 class="card-title">Optimiser une base de données, intéragir avec une application et mettre en oeuvre la sécurité</h5>
+              <button class="btn btn-outline-success" data-toggle="modal" data-target="#modalPOO">Voir plus</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compétence 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-brain fa-2x mb-3 text-warning"></i>
+              <h5 class="card-title">Déployer des services dans une architecture réseau</h5>
+              <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalUX">Voir plus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Web -->
+    <div class="modal fade" id="modalWeb" tabindex="-1" role="dialog" aria-labelledby="modalWebLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalWebLabel">Développement Web</h5>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+            Création de sites dynamiques avec HTML, CSS, JavaScript, PHP et gestion de bases de données MySQL. Intégration responsive et optimisation SEO.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal POO -->
+    <div class="modal fade" id="modalPOO" tabindex="-1" role="dialog" aria-labelledby="modalPOOLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalPOOLabel">Programmation Orientée Objet</h5>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+            Conception et développement d'applications orientées objet en Java et Python. Utilisation de l'UML pour modéliser les structures.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal UX -->
+    <div class="modal fade" id="modalUX" tabindex="-1" role="dialog" aria-labelledby="modalUXLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalUXLabel">Expérience Utilisateur (UX)</h5>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+            Conception d'interfaces intuitives centrées utilisateur. Tests d'usabilité, wireframes, et intégration d'interactions fluides.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
