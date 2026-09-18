@@ -3,878 +3,269 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nathan Dardalhon — Développeur Full Stack</title>
-<meta name="description" content="Portfolio de Nathan Dardalhon, développeur full stack en alternance chez Keole / Gazoline et étudiant en BUT Informatique à Montpellier-Sète. Symfony, PHP, JavaScript, WordPress, PrestaShop.">
+<title>Nathan Dardalhon — Développeur full stack</title>
+<meta name="description" content="Nathan Dardalhon, développeur full stack en alternance chez Keole / Gazoline et étudiant en BUT Informatique à Montpellier-Sète. Symfony, PHP, JavaScript.">
 <meta name="author" content="Nathan Dardalhon">
-<meta name="theme-color" content="#050508">
-
+<meta name="theme-color" content="#08080a">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Nathan Dardalhon — Développeur Full Stack">
+<meta property="og:title" content="Nathan Dardalhon — Développeur full stack">
 <meta property="og:description" content="BUT Informatique · Alternance Keole / Gazoline · Symfony, PHP, JavaScript.">
 <meta property="og:image" content="img/work-train.png">
-
 <link rel="icon" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/app.css">
 </head>
-
 <body id="top">
 
-<!-- ============ Préchargement ============ -->
-<div class="loader">
-  <div class="loader__inner">
-    <div class="loader__name">NATHAN DARDALHON</div>
-    <div class="loader__bar"><i></i></div>
-    <div class="loader__pct">000 %</div>
-  </div>
+<div class="veil">
+  <div class="veil__row"><span>Chargement</span><span class="veil__num">000</span></div>
+  <div class="veil__line"><i></i></div>
 </div>
 
-<!-- ============ Fond ============ -->
-<canvas id="bg-canvas" data-mode="hero"></canvas>
-<div class="bg-grid"></div>
-<div class="bg-vignette"></div>
-<div class="bg-grain"></div>
+<canvas class="scene" data-scene="hero"></canvas>
+<div class="noise"></div>
+<div class="progress"></div>
 
-<!-- ============ Navigation ============ -->
-<nav class="nav" id="nav">
-  <a class="nav__brand" href="#top">
-    <span class="nav__mark">ND</span>
-    <span>Nathan Dardalhon</span>
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="brand__dot"></span>
+    <span>Nathan Dardalhon<small>Développeur full stack</small></span>
   </a>
-  <ul class="nav__list">
-    <li><a class="nav__link is-active" href="#home">Accueil</a></li>
-    <li><a class="nav__link" href="#profil">Profil</a></li>
-    <li><a class="nav__link" href="#projets">Projets</a></li>
-    <li><a class="nav__link" href="#parcours">Parcours</a></li>
-    <li><a class="nav__link" href="#competences">Compétences</a></li>
-    <li><a class="nav__link" href="alternance.html">Alternance</a></li>
-  </ul>
-  <a class="btn btn--primary btn--sm nav__cta" href="#contact" data-magnetic="0.22">
-    Me contacter <i class="fa-solid fa-arrow-right"></i>
-  </a>
-  <button class="nav__burger" type="button" aria-label="Ouvrir le menu">
-    <span></span><span></span>
-  </button>
-  <div class="nav__scroll"><i></i></div>
+  <div class="menu">
+    <a href="index.html">Accueil</a>
+    <a href="projets.html">Projets</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="alternance.html">Alternance</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <button class="burger" type="button" aria-label="Menu"><span></span><span></span></button>
 </nav>
 
-<div class="drawer">
-  <a href="#home">Accueil</a>
-  <a href="#profil">Profil</a>
-  <a href="#stack">Stack</a>
-  <a href="#projets">Projets</a>
-  <a href="#parcours">Parcours</a>
-  <a href="#competences">Compétences</a>
+<div class="sheet">
+  <a href="index.html">Accueil</a>
+  <a href="projets.html">Projets</a>
+  <a href="parcours.html">Parcours</a>
   <a href="alternance.html">Alternance</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <main class="shell">
 
-  <!-- ============ Hero ============ -->
-  <section class="hero" id="home">
-    <div class="wrap hero__grid">
-      <div>
-        <span class="hero__badge"><i class="dot-live"></i> Disponible · Master ou alternance 2026</span>
-
-        <h1 class="hero__title" style="margin-top:26px">
-          <span class="line"><span>Nathan</span></span>
-          <span class="line"><span class="outline">Dardalhon</span></span>
-        </h1>
-
-        <p class="hero__role">
-          <span class="prompt">~$</span>
-          <span id="typed" data-words="Développeur Full Stack|Développeur Symfony / PHP|Intégrateur Front-End|Étudiant BUT Informatique"></span><span class="caret"></span>
-        </p>
-
-        <p class="lead hero__desc">
-          21 ans, 3<sup>e</sup> année de BUT Informatique à l'IUT de Montpellier-Sète et deux ans
-          d'alternance chez <strong style="color:var(--txt)">Keole / Gazoline</strong>. Je conçois des
-          applications web de bout en bout — de la maquette Figma jusqu'à la mise en production.
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#projets" data-magnetic="0.25">
-            Voir mes projets <i class="fa-solid fa-arrow-down"></i>
-          </a>
-          <a class="btn btn--ghost" href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf" data-magnetic="0.2">
-            <i class="fa-solid fa-file-arrow-down"></i> Télécharger mon CV
-          </a>
-        </div>
-
-        <dl class="hero__meta">
-          <div><dt>Localisation</dt><dd>Sète / Montpellier</dd></div>
-          <div><dt>Formation</dt><dd>BUT Informatique · RA</dd></div>
-          <div><dt>Entreprise</dt><dd>Keole / Gazoline</dd></div>
-          <div><dt>Mobilité</dt><dd>Permis B · Véhiculé</dd></div>
-        </dl>
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap" style="width:100%">
+      <div class="hero__top">
+        <span class="avail"><i class="pulse"></i> Disponible · Master ou alternance 2026</span>
       </div>
-    </div>
 
-    <div class="hero__socials">
-      <a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-      <a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    </div>
+      <h1 class="d1 hero__name">
+        <span class="ln"><span>Nathan</span></span>
+        <span class="ln"><span class="it">Dardalhon</span></span>
+      </h1>
 
-    <div class="hero__side">
-      <span>Scroll</span>
-      <span class="scroll-cue"></span>
+      <div class="hero__bottom">
+        <div>
+          <p class="hero__role">
+            <span class="dim">~</span> <b id="typed" data-words="Développeur full stack|Symfony &amp; PHP 8|Intégrateur front-end|BUT Informatique, 3e année"></b><span class="caret"></span>
+          </p>
+          <p class="body hero__lede">
+            21 ans, deux ans d'alternance chez <strong>Keole / Gazoline</strong> et une
+            troisième année de BUT Informatique à l'IUT de Montpellier-Sète. Je construis des
+            applications web de la maquette jusqu'à la mise en production.
+          </p>
+        </div>
+        <div class="hero__cta">
+          <a class="btn btn--fill" href="projets.html">Voir les projets <span class="btn__ico">→</span></a>
+          <a class="btn" href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">Mon CV <span class="btn__ico">↓</span></a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ Bandeau ============ -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>Symfony</span><span>PHP 8</span><span>JavaScript</span><span>Java</span><span>Python</span>
-      <span>MySQL</span><span>WordPress</span><span>PrestaShop</span><span>Git</span><span>Figma</span>
-      <span>Symfony</span><span>PHP 8</span><span>JavaScript</span><span>Java</span><span>Python</span>
-      <span>MySQL</span><span>WordPress</span><span>PrestaShop</span><span>Git</span><span>Figma</span>
+  <!-- ===== Bandeau ===== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__in">
+      <span>Symfony</span><span>PHP 8</span><span>JavaScript</span><span>MySQL</span><span>Doctrine</span>
+      <span>WordPress</span><span>PrestaShop</span><span>Java</span><span>Python</span><span>Git</span><span>Figma</span><span>UML</span>
+      <span>Symfony</span><span>PHP 8</span><span>JavaScript</span><span>MySQL</span><span>Doctrine</span>
+      <span>WordPress</span><span>PrestaShop</span><span>Java</span><span>Python</span><span>Git</span><span>Figma</span><span>UML</span>
     </div>
   </div>
 
-  <!-- ============ Profil ============ -->
-  <section class="section" id="profil">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>À propos</span>
-        <h2 class="h-lg split">Un étudiant qui code déjà en production.</h2>
+  <!-- ===== Profil ===== -->
+  <section class="sect" id="profil">
+    <div class="wrap cols">
+      <div data-rise>
+        <span class="label">Profil</span>
+        <dl class="deflist" style="margin-top:30px">
+          <div><dt>Âge</dt><dd>21 ans</dd></div>
+          <div><dt>Formation</dt><dd>BUT Informatique — RA</dd></div>
+          <div><dt>Entreprise</dt><dd>Keole / Gazoline</dd></div>
+          <div><dt>Base</dt><dd>Sète (34)</dd></div>
+          <div><dt>Mobilité</dt><dd>Permis B, véhiculé</dd></div>
+        </dl>
       </div>
 
-      <div class="about__grid">
-        <div data-reveal="left">
-          <div class="terminal">
-            <div class="terminal__bar"><i></i><i></i><i></i><b>~/nathan/profil.json</b></div>
-            <div class="terminal__body">
-<span class="c">// carte d'identité</span><br>
-{<br>
-&nbsp;&nbsp;<span class="p">"nom"</span>: <span class="s">"Nathan Dardalhon"</span>,<br>
-&nbsp;&nbsp;<span class="p">"age"</span>: <span class="n">21</span>,<br>
-&nbsp;&nbsp;<span class="p">"role"</span>: <span class="s">"Développeur Full Stack"</span>,<br>
-&nbsp;&nbsp;<span class="p">"formation"</span>: <span class="s">"BUT Informatique — RA"</span>,<br>
-&nbsp;&nbsp;<span class="p">"entreprise"</span>: <span class="s">"Keole / Gazoline"</span>,<br>
-&nbsp;&nbsp;<span class="p">"ville"</span>: <span class="s">"Sète (34)"</span>,<br>
-&nbsp;&nbsp;<span class="p">"stack"</span>: [<span class="s">"Symfony"</span>, <span class="s">"PHP"</span>, <span class="s">"JS"</span>, <span class="s">"MySQL"</span>],<br>
-&nbsp;&nbsp;<span class="p">"dispo"</span>: <span class="k">true</span><br>
-}
-            </div>
-          </div>
-
-          <ul class="facts">
-            <li><span class="k">Email</span><a class="v link-u" href="mailto:nathan.dardalhon@etu.umontpellier.fr">nathan.dardalhon@etu.umontpellier.fr</a></li>
-            <li><span class="k">Téléphone</span><a class="v link-u" href="tel:+33784676886">07 84 67 68 86</a></li>
-            <li><span class="k">Adresse</span><span class="v">6 Quai du Port St Clair, 34200 Sète</span></li>
-          </ul>
-
-          <div style="margin-top:26px">
-            <a class="btn btn--ghost" href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">
-              <i class="fa-solid fa-file-pdf"></i> Mon CV en PDF
-            </a>
-          </div>
-        </div>
-
-        <div class="about__body" data-reveal data-delay="0.1">
-          <h3 class="h-md">Qui je suis</h3>
-          <p>
-            Je m'appelle <strong>Nathan Dardalhon</strong> et je suis en troisième année de
-            <strong>BUT Informatique</strong> à l'IUT de Montpellier-Sète, parcours
-            <em>Réalisation d'applications</em>. Le développement web m'a attrapé très tôt : comprendre
-            comment un site tient debout, du premier pixel à la base de données, est devenu une
-            obsession utile.
+      <div>
+        <h2 class="d2 spl">Un étudiant qui code déjà en production.</h2>
+        <div style="margin-top:34px;max-width:62ch">
+          <p class="body" data-rise>
+            Le développement web m'a attrapé tôt : comprendre comment un site tient debout,
+            du premier pixel jusqu'à la base de données, est devenu une obsession utile.
+            Aujourd'hui je travaille sur de vrais projets clients — <strong>Symfony</strong> pour
+            les applications métier, <strong>PrestaShop</strong> pour l'e-commerce,
+            <strong>WordPress</strong> pour les sites vitrines.
           </p>
-
-          <h3 class="h-md">Ce que je fais</h3>
-          <p>
-            En alternance chez <strong>Keole</strong> et <strong>Gazoline</strong>, je travaille sur de
-            vrais projets clients : <strong>Symfony</strong> pour les applications métier,
-            <strong>PrestaShop</strong> pour l'e-commerce, <strong>WordPress</strong> pour les sites
-            vitrines. Réunions client, specs, développement, tests, mise en production — je suis sur
-            toute la chaîne.
+          <p class="body" data-rise data-delay="0.08">
+            Réunions client, spécifications, développement, tests, mise en production : je suis
+            sur toute la chaîne, pas seulement sur le code. C'est ce que l'alternance m'a apporté
+            de plus précieux — et ce que l'école seule ne peut pas enseigner.
           </p>
-          <p>
-            Curieux et polyvalent, je continue de me former sur d'autres environnements :
-            <strong>Java</strong>, <strong>C++</strong>, <strong>Python</strong> ou encore
-            <strong>WinDev</strong>, pour ne jamais dépendre d'un seul outil.
+          <p class="body" data-rise data-delay="0.16">
+            Curieux et polyvalent, je continue de me former sur <strong>Java</strong>,
+            <strong>C++</strong>, <strong>Python</strong> et <strong>WinDev</strong>, pour ne
+            jamais dépendre d'un seul outil.
           </p>
-
-          <h3 class="h-md">Ce que je recherche</h3>
-          <p>
-            Titulaire du permis B, mobile et motivé, je vise un <strong>Master Informatique</strong>
-            en alternance à la rentrée 2026 (Montpellier ou Lyon), avec une spécialisation en génie
-            logiciel ou développement web avancé. Objectif : devenir autonome sur des architectures
-            complètes, puis évoluer vers un rôle de lead developer.
+          <p style="margin-top:30px" data-rise data-delay="0.2">
+            <a class="ul" href="parcours.html">Voir mon parcours complet <span aria-hidden="true">↗</span></a>
           </p>
-
-          <div class="stats" style="margin-top:36px">
-            <div class="stat">
-              <div class="stat__num"><span data-count="2">0</span> ans</div>
-              <div class="stat__label">D'alternance en entreprise</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num"><span data-count="6">0</span></div>
-              <div class="stat__label">Projets documentés ici</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num"><span data-count="1">0</span><sup>er</sup></div>
-              <div class="stat__label">Prix Nuit du Code 2024</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Stack ============ -->
-  <section class="section section--tight" id="stack">
+  <!-- ===== Chiffres ===== -->
+  <section class="sect--sm">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Boîte à outils</span>
-        <h2 class="h-lg split">Les technologies que j'utilise au quotidien.</h2>
-      </div>
-
-      <div class="stack-groups">
-        <div class="stack-group" data-reveal>
-          <div class="stack-group__title">Back-end</div>
-          <div class="chips">
-            <span class="chip chip--lvl"><i class="fa-brands fa-php"></i> PHP 8 <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-brands fa-symfony"></i> Symfony <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-solid fa-database"></i> MySQL / Doctrine <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b></b><b></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-brands fa-java"></i> Java <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b></b><b></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-brands fa-python"></i> Python <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b></b><b></b></span></span>
-            <span class="chip"><i class="fa-solid fa-plug"></i> API REST</span>
-          </div>
+      <div class="figures">
+        <div class="figure" data-rise>
+          <div class="figure__n"><span data-count="2">0</span></div>
+          <div class="figure__t">Années d'alternance en entreprise</div>
         </div>
-
-        <div class="stack-group" data-reveal>
-          <div class="stack-group__title">Front-end</div>
-          <div class="chips">
-            <span class="chip chip--lvl"><i class="fa-brands fa-html5"></i> HTML5 <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-brands fa-css3-alt"></i> CSS3 / Sass <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-brands fa-js"></i> JavaScript <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b></b></span></span>
-            <span class="chip"><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
-            <span class="chip"><i class="fa-solid fa-cube"></i> Three.js / WebGL</span>
-            <span class="chip"><i class="fa-solid fa-mobile-screen"></i> Responsive</span>
-          </div>
+        <div class="figure" data-rise data-delay="0.06">
+          <div class="figure__n"><span data-count="6">0</span></div>
+          <div class="figure__t">Projets documentés de bout en bout</div>
         </div>
-
-        <div class="stack-group" data-reveal>
-          <div class="stack-group__title">CMS &amp; e-commerce</div>
-          <div class="chips">
-            <span class="chip chip--lvl"><i class="fa-brands fa-wordpress"></i> WordPress <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b></b></span></span>
-            <span class="chip chip--lvl"><i class="fa-solid fa-bag-shopping"></i> PrestaShop <span class="chip__lvl"><b class="on"></b><b class="on"></b><b class="on"></b><b></b><b></b></span></span>
-            <span class="chip"><i class="fa-brands fa-stripe"></i> Stripe / PayPal</span>
-            <span class="chip"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO on-page</span>
-          </div>
+        <div class="figure" data-rise data-delay="0.12">
+          <div class="figure__n"><span data-count="1">0</span><sup>er</sup></div>
+          <div class="figure__t">Prix — Nuit du Code 2024</div>
         </div>
-
-        <div class="stack-group" data-reveal>
-          <div class="stack-group__title">Outils &amp; méthodes</div>
-          <div class="chips">
-            <span class="chip"><i class="fa-brands fa-git-alt"></i> Git / GitHub</span>
-            <span class="chip"><i class="fa-brands fa-figma"></i> Figma</span>
-            <span class="chip"><i class="fa-solid fa-diagram-project"></i> UML</span>
-            <span class="chip"><i class="fa-solid fa-list-check"></i> Agile / Scrum</span>
-            <span class="chip"><i class="fa-brands fa-trello"></i> Trello / Jira</span>
-            <span class="chip"><i class="fa-brands fa-linux"></i> Linux</span>
-          </div>
+        <div class="figure" data-rise data-delay="0.18">
+          <div class="figure__n"><span data-count="3">0</span></div>
+          <div class="figure__t">Frameworks &amp; CMS utilisés en production</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Projets ============ -->
-  <section class="section" id="projets">
+  <!-- ===== Travaux ===== -->
+  <section class="sect" id="travaux">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Sélection</span>
-        <h2 class="h-lg split">Des projets scolaires, pros et personnels.</h2>
-        <p class="lead" data-reveal>Cliquez sur une carte pour ouvrir le détail : contexte, rôle, difficultés rencontrées et solutions mises en place.</p>
+      <div class="head" data-rise>
+        <span class="label">Sélection</span>
+        <h2 class="d2 spl">Quelques projets récents.</h2>
       </div>
 
-      <div class="filters" data-reveal>
-        <button class="filter is-active" data-filter="all">Tout</button>
-        <button class="filter" data-filter="sae">SAE / IUT</button>
-        <button class="filter" data-filter="perso">Personnel</button>
-        <button class="filter" data-filter="web">Web</button>
-        <button class="filter" data-filter="game">Jeu</button>
+      <div class="rows" style="margin-top:clamp(40px,5vw,70px)">
+        <a class="row" href="projets.html#train" data-peek="img/work-train.png" data-rise>
+          <span class="row__n">01</span>
+          <span class="row__t">SAE Train</span>
+          <span class="row__m">Java · JavaFX · UML</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </a>
+        <a class="row" href="projets.html#escape" data-peek="img/work-escape.png" data-rise>
+          <span class="row__n">02</span>
+          <span class="row__t">Site Escape Game</span>
+          <span class="row__m">PHP · MySQL · Figma</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </a>
+        <a class="row" href="projets.html#rpg" data-peek="img/work-rpg.png" data-rise>
+          <span class="row__n">03</span>
+          <span class="row__t">RPG Python</span>
+          <span class="row__m">1<sup>er</sup> prix · Python · Pygame</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </a>
+        <a class="row" href="projets.html#taskflow" data-peek="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&amp;h=600&amp;fit=crop" data-rise>
+          <span class="row__n">04</span>
+          <span class="row__t">TaskFlow</span>
+          <span class="row__m">React · Node · MongoDB</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </a>
       </div>
 
-      <div class="works">
-
-        <div class="work" role="button" tabindex="0" data-cat="sae game" data-project="train" data-tilt="6">
-          <div class="work__media">
-            <span class="work__tag">SAE S2.01</span>
-            <img src="img/work-train.png" alt="Interface du jeu Train développé en JavaFX" loading="lazy">
-          </div>
-          <div class="work__body">
-            <h3 class="work__title">SAE Train</h3>
-            <p class="work__sub">Les Aventuriers du Rail en JavaFX · Binôme</p>
-            <ul class="work__tech"><li>Java 17</li><li>JavaFX</li><li>UML</li><li>MVC</li></ul>
-            <span class="work__go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </div>
-        </div>
-
-        <div class="work" role="button" tabindex="0" data-cat="sae web" data-project="escape" data-tilt="6">
-          <div class="work__media">
-            <span class="work__tag">SAE S3.01</span>
-            <img src="img/work-escape.png" alt="Page d'accueil du site d'escape game" loading="lazy">
-          </div>
-          <div class="work__body">
-            <h3 class="work__title">Site Escape Game</h3>
-            <p class="work__sub">Plateforme de réservation full stack · Équipe de 4</p>
-            <ul class="work__tech"><li>PHP 8</li><li>MySQL</li><li>JS</li><li>Figma</li></ul>
-            <span class="work__go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </div>
-        </div>
-
-        <div class="work" role="button" tabindex="0" data-cat="sae game" data-project="rpg" data-tilt="6">
-          <div class="work__media">
-            <span class="work__tag">Game Jam</span>
-            <span class="work__award">1<sup>er</sup> prix</span>
-            <img src="img/work-rpg.png" alt="Combat tour par tour du RPG développé en Python" loading="lazy">
-          </div>
-          <div class="work__body">
-            <h3 class="work__title">RPG Python</h3>
-            <p class="work__sub">Nuit du Code 2024 · 6 heures chrono · Équipe de 3</p>
-            <ul class="work__tech"><li>Python</li><li>Pygame</li><li>JSON</li></ul>
-            <span class="work__go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </div>
-        </div>
-
-        <div class="work" role="button" tabindex="0" data-cat="perso web" data-project="taskflow" data-tilt="6">
-          <div class="work__media">
-            <span class="work__tag">Perso</span>
-            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop" alt="Tableau Kanban de l'application TaskFlow" loading="lazy">
-          </div>
-          <div class="work__body">
-            <h3 class="work__title">TaskFlow</h3>
-            <p class="work__sub">Application de productivité Kanban temps réel</p>
-            <ul class="work__tech"><li>React 18</li><li>Node.js</li><li>MongoDB</li><li>Socket.io</li></ul>
-            <span class="work__go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </div>
-        </div>
-
-        <div class="work" role="button" tabindex="0" data-cat="perso" data-project="bot" data-tilt="6">
-          <div class="work__media">
-            <span class="work__tag">Perso</span>
-            <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&h=500&fit=crop" alt="Bot Discord en fonctionnement" loading="lazy">
-          </div>
-          <div class="work__body">
-            <h3 class="work__title">MusicMod Bot</h3>
-            <p class="work__sub">Bot Discord musique &amp; modération · 150+ membres</p>
-            <ul class="work__tech"><li>Python</li><li>Discord.py</li><li>Flask</li><li>PostgreSQL</li></ul>
-            <span class="work__go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </div>
-        </div>
-
-        <div class="work" role="button" tabindex="0" data-cat="perso web" data-project="weather" data-tilt="6">
-          <div class="work__media">
-            <span class="work__tag">Perso</span>
-            <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=500&fit=crop" alt="Dashboard météo WeatherHub" loading="lazy">
-          </div>
-          <div class="work__body">
-            <h3 class="work__title">WeatherHub</h3>
-            <p class="work__sub">Dashboard météo PWA avec cartes et graphiques</p>
-            <ul class="work__tech"><li>Vue 3</li><li>Vite</li><li>Chart.js</li><li>Leaflet</li></ul>
-            <span class="work__go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </div>
-        </div>
-
-      </div>
+      <p style="margin-top:38px" data-rise>
+        <a class="btn" href="projets.html">Tous les projets en 3D <span class="btn__ico">→</span></a>
+      </p>
     </div>
   </section>
 
-  <!-- ============ Parcours ============ -->
-  <section class="section section--tight" id="parcours">
+  <!-- ===== Appel ===== -->
+  <section class="sect">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Chronologie</span>
-        <h2 class="h-lg split">Mon parcours, étape par étape.</h2>
-      </div>
-
-      <div class="timeline">
-        <article class="tl-item tl-item--now" data-reveal>
-          <div class="tl-item__when">2024 — 2026</div>
-          <div>
-            <h3 class="h-md">Alternance — Développeur web full stack <span class="badge-now">En cours</span></h3>
-            <p class="tl-item__where">Keole / Gazoline · Sète</p>
-            <p class="tl-item__desc">
-              Trois jours en entreprise, deux jours à l'IUT. Développement Symfony, boutiques
-              PrestaShop, thèmes et plugins WordPress, participation aux réunions clients et aux
-              mises en production. Projet phare : <strong>mybateau.fr</strong>.
-            </p>
-            <p style="margin-top:14px"><a class="link-u mono" href="alternance.html" style="font-size:.84rem">Voir le détail de l'alternance →</a></p>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-item__when">2023 — 2026</div>
-          <div>
-            <h3 class="h-md">BUT Informatique — parcours Réalisation d'applications</h3>
-            <p class="tl-item__where">IUT de Montpellier-Sète</p>
-            <p class="tl-item__desc">
-              Programmation orientée objet, bases de données, développement web, réseau, gestion de
-              projet. Projets SAE en équipe chaque semestre, de la conception UML jusqu'à la
-              livraison.
-            </p>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-item__when">2024</div>
-          <div>
-            <h3 class="h-md">1<sup>er</sup> prix — Nuit du Code</h3>
-            <p class="tl-item__where">IUT de Montpellier-Sète</p>
-            <p class="tl-item__desc">
-              Game jam de 6 heures en équipe de 3. Développement d'un RPG tour par tour en Python /
-              Pygame, récompensé par la première place du concours.
-            </p>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-item__when">2023</div>
-          <div>
-            <h3 class="h-md">Baccalauréat général</h3>
-            <p class="tl-item__where">Spécialités Mathématiques &amp; NSI</p>
-            <p class="tl-item__desc">
-              Premiers vrais projets de code en NSI : algorithmique, Python, structures de données,
-              bases du web. Le déclic.
-            </p>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-item__when">2026 →</div>
-          <div>
-            <h3 class="h-md">Objectif : Master Informatique</h3>
-            <p class="tl-item__where">Montpellier ou Lyon · en alternance</p>
-            <p class="tl-item__desc">
-              Spécialisation génie logiciel ou développement web avancé : architecture logicielle,
-              DevOps, méthodes agiles à l'échelle. Puis un poste de développeur full stack dans une
-              équipe produit, avec l'ambition d'évoluer vers un rôle de lead developer.
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Compétences BUT ============ -->
-  <section class="section" id="competences">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Référentiel BUT</span>
-        <h2 class="h-lg split">Compétences validées et mises en pratique.</h2>
-        <p class="lead" data-reveal>Chaque compétence du référentiel est illustrée par des apprentissages critiques concrets, tirés de mes projets et de mon alternance.</p>
-      </div>
-
-      <div class="acc" data-reveal>
-        <div class="acc__item">
-          <button class="acc__head" type="button" aria-expanded="false">
-            <span class="acc__idx">01</span>
-            <span class="acc__title">Appliquer une démarche de suivi de projet en fonction des besoins métiers des clients et des utilisateurs</span>
-            <span class="acc__icon"></span>
-          </button>
-          <div class="acc__panel"><div><div class="acc__inner">
-            <p class="lead">
-              Conception de sites web dynamiques, performants et responsives (HTML, CSS, JavaScript,
-              PHP, MySQL), avec une attention constante portée à l'accessibilité, l'ergonomie et le
-              référencement naturel.
-            </p>
-            <ul class="ac-list">
-              <li><b>AC 1 — Recueil du besoin</b>Sur <em>mybateau.fr</em>, site de vente de bateaux, j'ai contribué à la rédaction et à l'implémentation des spécifications fonctionnelles en lien direct avec le client.</li>
-              <li><b>AC 2 — Ergonomie &amp; accessibilité</b>Le site a été pensé responsive et accessible : contrastes, tailles de police, navigation intuitive sur tous les supports.</li>
-              <li><b>AC 3 — Qualité de code</b>Code structuré et évolutif : séparation des responsabilités, versionnement Git, respect des conventions de l'équipe.</li>
-              <li><b>AC 4 — Validation</b>Tests fonctionnels en condition réelle avant et après mise en ligne, avec corrections itératives selon les retours.</li>
-            </ul>
-          </div></div></div>
-        </div>
-
-        <div class="acc__item">
-          <button class="acc__head" type="button" aria-expanded="false">
-            <span class="acc__idx">02</span>
-            <span class="acc__title">Optimiser une base de données, interagir avec une application et mettre en œuvre la sécurité</span>
-            <span class="acc__icon"></span>
-          </button>
-          <div class="acc__panel"><div><div class="acc__inner">
-            <p class="lead">
-              Maîtrise de Java et Python à travers des projets concrets intégrant les grands principes
-              de la POO — encapsulation, héritage, polymorphisme — et modélisation UML dès la
-              conception.
-            </p>
-            <ul class="ac-list">
-              <li><b>AC 1 — Conception objet</b>Projets comme le jeu de cartes E3C ou le jeu Train : application des concepts POO dès la phase de modélisation.</li>
-              <li><b>AC 2 — Modélisation UML</b>Diagrammes de classes, de séquences et de cas d'utilisation pour anticiper les interactions entre objets.</li>
-              <li><b>AC 3 — Travail collaboratif</b>Binôme sur le projet Train : répartition claire des tâches, code documenté, revues croisées.</li>
-              <li><b>AC 4 — Performance</b>Nuit du Code : mini-jeu Python optimisé en mémoire et en temps d'exécution grâce à une architecture modulaire.</li>
-            </ul>
-          </div></div></div>
-        </div>
-
-        <div class="acc__item">
-          <button class="acc__head" type="button" aria-expanded="false">
-            <span class="acc__idx">03</span>
-            <span class="acc__title">Déployer des services dans une architecture réseau et concevoir l'expérience utilisateur</span>
-            <span class="acc__icon"></span>
-          </button>
-          <div class="acc__panel"><div><div class="acc__inner">
-            <p class="lead">
-              Création d'interfaces intuitives centrées sur les besoins réels des utilisateurs :
-              ergonomie, clarté et accessibilité dès la conception, jusqu'aux tests utilisateurs.
-            </p>
-            <ul class="ac-list">
-              <li><b>AC 1 — Parcours utilisateur</b>Sur <em>mybateau.fr</em>, optimisation du tunnel jusqu'à la prise de contact : navigation simplifiée, information accessible en moins de clics.</li>
-              <li><b>AC 2 — Maquettage</b>Figma pour les maquettes interactives, définition de personas et rédaction de user stories fondées sur des profils concrets.</li>
-              <li><b>AC 3 — Tests terrain</b>Analyse des retours d'utilisateurs réels : certains problèmes ne se révèlent qu'en usage direct, d'où l'importance des tests.</li>
-              <li><b>AC 4 — Organisation d'équipe</b>Structuration des idées et suivi des tâches avec Trello, pour affiner chaque étape du projet collectivement.</li>
-            </ul>
-          </div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Alternance ============ -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="feature" data-glow data-reveal="scale">
-        <div>
-          <span class="eyebrow">Deux ans en entreprise</span>
-          <h2 class="h-lg">Keole &amp; Gazoline</h2>
-          <p class="lead" style="margin-top:18px">
-            Développeur web full stack en alternance de septembre 2024 à août 2026. Des sites vitrine
-            aux plateformes e-commerce complexes, avec de vrais clients, de vrais délais et de vraies
-            mises en production.
-          </p>
-          <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap">
-            <a class="btn btn--primary" href="alternance.html" data-magnetic="0.25">
-              Découvrir mon alternance <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <ul class="feature__mini">
-          <li><i class="fa-brands fa-symfony"></i> Applications métier sous Symfony</li>
-          <li><i class="fa-solid fa-bag-shopping"></i> Boutiques PrestaShop &amp; paiement en ligne</li>
-          <li><i class="fa-brands fa-wordpress"></i> Thèmes et plugins WordPress sur mesure</li>
-          <li><i class="fa-solid fa-ship"></i> Projet phare : mybateau.fr</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Citation ============ -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="quote" id="quote" data-reveal>
-        <div class="quote__mark">“</div>
-        <p class="quote__text"></p>
-        <div class="quote__author"></div>
-        <div class="quote__dots"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Contact ============ -->
-  <section class="section" id="contact">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Contact</span>
-        <h2 class="h-lg split">Un projet, une alternance, une question ?</h2>
-      </div>
-
-      <div class="contact__grid">
-        <form class="card" id="contact-form" data-glow data-reveal="left" novalidate>
-          <div class="card__glow"></div>
-          <h3 class="h-md" style="margin-bottom:24px">Envoyez-moi un message</h3>
-
-          <div class="field">
-            <input type="text" id="c-name" name="name" placeholder=" " autocomplete="name">
-            <label for="c-name">Votre nom</label>
-          </div>
-          <div class="field">
-            <input type="email" id="c-email" name="email" placeholder=" " autocomplete="email">
-            <label for="c-email">Votre email</label>
-          </div>
-          <div class="field">
-            <input type="text" id="c-subject" name="subject" placeholder=" ">
-            <label for="c-subject">Sujet</label>
-          </div>
-          <div class="field">
-            <textarea id="c-message" name="message" placeholder=" "></textarea>
-            <label for="c-message">Votre message</label>
-          </div>
-
-          <button class="btn btn--primary" type="submit" data-magnetic="0.2">
-            Envoyer <i class="fa-solid fa-paper-plane"></i>
-          </button>
-          <p class="form-note">Le formulaire ouvre votre logiciel de messagerie avec le message pré-rempli.</p>
-          <div class="form-status" role="status"></div>
-        </form>
-
-        <div data-reveal data-delay="0.1">
-          <h3 class="h-md">Entrer en contact</h3>
-          <p class="lead" style="margin-top:14px">
-            Je suis ouvert aux opportunités d'alternance en Master, aux missions freelance et à toute
-            discussion technique. Le plus rapide reste l'email ou LinkedIn.
-          </p>
-
-          <ul class="contact-list">
-            <li><a href="mailto:nathan.dardalhon@etu.umontpellier.fr">
-              <i class="fa-solid fa-envelope"></i>
-              <span><span class="lbl">Email</span><span class="val">nathan.dardalhon@etu.umontpellier.fr</span></span>
-            </a></li>
-            <li><a href="tel:+33784676886">
-              <i class="fa-solid fa-phone"></i>
-              <span><span class="lbl">Téléphone</span><span class="val">07 84 67 68 86</span></span>
-            </a></li>
-            <li><span>
-              <i class="fa-solid fa-location-dot"></i>
-              <span><span class="lbl">Localisation</span><span class="val">6 Quai du Port St Clair, 34200 Sète</span></span>
-            </span></li>
-            <li><a href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">
-              <i class="fa-solid fa-file-pdf"></i>
-              <span><span class="lbl">Curriculum vitae</span><span class="val">Télécharger le PDF</span></span>
-            </a></li>
-          </ul>
-
-          <div class="socials">
-            <a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          </div>
-        </div>
+      <hr class="rule">
+      <div style="padding-top:clamp(40px,6vw,80px)">
+        <p class="label" data-rise>Et ensuite</p>
+        <h2 class="d2" style="max-width:20ch;margin-top:20px" data-rise>
+          Je cherche une alternance en <span class="it">Master</span> pour 2026.
+        </h2>
+        <p class="body" style="max-width:52ch;margin-top:24px" data-rise data-delay="0.08">
+          Montpellier ou Lyon, spécialisation génie logiciel ou développement web avancé.
+          Si mon profil vous parle, écrivons-nous.
+        </p>
+        <p style="margin-top:34px" data-rise data-delay="0.14">
+          <a class="btn btn--fill" href="contact.html">Me contacter <span class="btn__ico">→</span></a>
+        </p>
       </div>
     </div>
   </section>
 </main>
 
-<!-- ============ Pied de page ============ -->
-<footer class="footer">
-  <div class="wrap footer__row">
-    <span>© <span data-year>2026</span> Nathan Dardalhon — Tous droits réservés</span>
-    <span>Construit à la main · HTML, CSS, JavaScript &amp; Three.js</span>
-    <a href="#top">Retour en haut ↑</a>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__k">Nathan Dardalhon</div>
+        <p class="body" style="max-width:32ch;font-size:.9rem">
+          Développeur full stack en alternance chez Keole / Gazoline. Disponible pour un Master
+          en alternance à la rentrée 2026.
+        </p>
+      </div>
+      <div>
+        <div class="foot__k">Pages</div>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="parcours.html">Parcours</a></li>
+          <li><a href="alternance.html">Alternance</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot__k">Ailleurs</div>
+        <ul>
+          <li><a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">CV (PDF) ↓</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span data-year>2026</span> — Sète, France</span>
+      <span>HTML · CSS · JavaScript · Three.js</span>
+      <a href="#top">Haut de page ↑</a>
+    </div>
   </div>
 </footer>
 
-<button class="to-top" type="button" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+<button class="up" type="button" aria-label="Haut de page">↑</button>
 
-<!-- ============ Modale projets ============ -->
-<div class="modal" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal__scrim"></div>
-  <div class="modal__panel">
-    <button class="modal__close" type="button" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
-    <div id="modal-slot"></div>
-  </div>
-</div>
-
-<!-- ============ Contenus des modales ============ -->
-<template id="tpl-train">
-  <div class="modal__hero"><img src="img/work-train.png" alt="Interface du jeu Train"></div>
-  <div class="modal__body">
-    <h3>SAE Train — Les Aventuriers du Rail en JavaFX</h3>
-    <div class="modal__meta">
-      <span>SAE S2.01 · 2024</span><span>6 semaines</span><span>Binôme</span><span>Rôle : IHM &amp; conception UML</span>
-    </div>
-
-    <h4>Contexte</h4>
-    <p>Projet réalisé dans le cadre de la SAE S2.01 « Développement d'une application », au semestre 2 du BUT Informatique. L'objectif : recréer le jeu de société <em>Les Aventuriers du Rail</em> en version numérique, en binôme, sur six semaines.</p>
-
-    <h4>Travail réalisé</h4>
-    <ul class="bullets">
-      <li>Conception de l'architecture logicielle avec diagrammes UML (classes, séquences, cas d'utilisation).</li>
-      <li>Développement de l'interface graphique JavaFX et gestion des événements utilisateur.</li>
-      <li>Implémentation de la logique métier : gestion des routes, des wagons et du calcul de score.</li>
-      <li>Mise en place du pattern MVC pour séparer strictement l'affichage de la logique.</li>
-    </ul>
-
-    <h4>Difficulté &amp; solution</h4>
-    <p>La synchronisation entre l'affichage graphique et l'état du jeu s'est révélée le point dur du projet. Je l'ai résolue en implémentant le pattern <strong>Observer</strong> : l'interface s'abonne aux changements d'état du modèle et se redessine uniquement quand c'est nécessaire.</p>
-
-    <h4>Compétences</h4>
-    <div class="modal__meta">
-      <span>Programmation orientée objet</span><span>Conception UML</span><span>JavaFX</span><span>Pattern MVC / Observer</span><span>Git</span><span>Travail en équipe</span>
-    </div>
-
-    <div class="modal__note">Technologies : Java 17, JavaFX, SceneBuilder, UML, Git.</div>
-  </div>
-</template>
-
-<template id="tpl-escape">
-  <div class="modal__hero"><img src="img/work-escape.png" alt="Site web escape game"></div>
-  <div class="modal__body">
-    <h3>Site Escape Game — Plateforme de réservation</h3>
-    <div class="modal__meta">
-      <span>SAE S3.01 · 2024</span><span>Équipe de 4</span><span>Rôle : Front-End &amp; UX</span>
-    </div>
-
-    <h4>Contexte</h4>
-    <p>SAE S3.01 « Développement d'une application web », semestre 3 du BUT Informatique. Objectif : créer un site complet pour une entreprise fictive d'escape game, avec un système de réservation réellement fonctionnel.</p>
-
-    <h4>Travail réalisé</h4>
-    <ul class="bullets">
-      <li>Conception des maquettes UI/UX sur Figma, avec un parcours utilisateur optimisé.</li>
-      <li>Développement front-end responsive en HTML5, CSS3 et JavaScript vanilla.</li>
-      <li>Animations interactives pour immerger le visiteur dans l'univers des salles.</li>
-      <li>Back-end PHP : gestion des réservations, des créneaux et base de données MySQL.</li>
-      <li>Système d'authentification sécurisé (hachage des mots de passe, sessions).</li>
-    </ul>
-
-    <h4>Difficulté &amp; solution</h4>
-    <p>Gérer les conflits de réservation en temps réel : deux clients pouvaient viser le même créneau. J'ai mis en place un <strong>verrouillage optimiste</strong> avec revérification côté serveur au moment de la validation, ce qui élimine les doubles réservations.</p>
-
-    <h4>Compétences</h4>
-    <div class="modal__meta">
-      <span>Développement full stack</span><span>Design responsive</span><span>UX / UI</span><span>MySQL</span><span>Sécurité web</span><span>Gestion de projet agile</span>
-    </div>
-
-    <div class="modal__note">Technologies : HTML5, CSS3, JavaScript, PHP 8, MySQL, Figma.</div>
-  </div>
-</template>
-
-<template id="tpl-rpg">
-  <div class="modal__hero"><img src="img/work-rpg.png" alt="Jeu RPG Python"></div>
-  <div class="modal__body">
-    <h3>RPG Python — 1<sup>er</sup> prix de la Nuit du Code 2024</h3>
-    <div class="modal__meta">
-      <span>Game jam · 2024</span><span>6 heures</span><span>Équipe de 3</span><span>Rôle : gameplay &amp; combat</span>
-    </div>
-
-    <h4>Contexte</h4>
-    <p>Développé lors de la <strong>Nuit du Code 2024</strong>, une game jam organisée par l'IUT : six heures pour livrer un jeu jouable, en équipe de trois. Notre équipe a remporté la première place du concours.</p>
-
-    <h4>Travail réalisé</h4>
-    <ul class="bullets">
-      <li>Conception éclair de l'architecture du jeu sous forte contrainte de temps.</li>
-      <li>Système de combat tour par tour avec gestion complète des statistiques.</li>
-      <li>Carte explorable et système de rencontres aléatoires.</li>
-      <li>Sauvegarde et chargement de partie au format JSON.</li>
-      <li>Animations et effets visuels avec Pygame.</li>
-    </ul>
-
-    <h4>Difficulté &amp; solution</h4>
-    <p>Le temps, évidemment. Nous avons découpé le jeu en <strong>modules indépendants</strong> — combat, carte, interface — développés en parallèle puis intégrés dans la dernière heure. Aucun membre n'a attendu un autre.</p>
-
-    <h4>Résultat</h4>
-    <p>🏆 <strong>1<sup>er</sup> prix — Nuit du Code 2024</strong></p>
-
-    <div class="modal__note">Technologies : Python 3.11, Pygame, JSON.</div>
-  </div>
-</template>
-
-<template id="tpl-taskflow">
-  <div class="modal__hero"><img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=600&fit=crop" alt="TaskFlow"></div>
-  <div class="modal__body">
-    <h3>TaskFlow — Application de gestion de tâches</h3>
-    <div class="modal__meta">
-      <span>Projet personnel · été 2025</span><span>3 semaines</span><span>Solo</span>
-    </div>
-
-    <h4>Contexte</h4>
-    <p>Projet personnel mené pour approfondir le développement web moderne : construire une application de productivité complète, de A à Z, avec les technologies les plus demandées sur le marché.</p>
-
-    <h4>Fonctionnalités</h4>
-    <ul class="bullets">
-      <li>Tableau Kanban interactif avec glisser-déposer (React DnD).</li>
-      <li>Authentification JWT avec refresh token.</li>
-      <li>API REST complète en Node.js / Express.</li>
-      <li>Base MongoDB via Mongoose.</li>
-      <li>Notifications en temps réel avec Socket.io.</li>
-      <li>Thème sombre / clair persistant.</li>
-      <li>Déploiement : Vercel pour le front, Railway pour l'API.</li>
-    </ul>
-
-    <h4>Difficulté &amp; solution</h4>
-    <p>La gestion de l'état global devenait ingérable à mesure que les écrans s'ajoutaient. Le passage à <strong>Redux Toolkit</strong> et <strong>RTK Query</strong> a centralisé l'état et mis en cache les requêtes API, divisant nettement la complexité du code.</p>
-
-    <div class="modal__note">Technologies : React 18, Node.js, Express, MongoDB, Socket.io, Tailwind CSS.</div>
-
-    <div class="modal__foot">
-      <a class="btn btn--ghost btn--sm" href="https://github.com/N-Dardalhon" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Voir sur GitHub</a>
-    </div>
-  </div>
-</template>
-
-<template id="tpl-bot">
-  <div class="modal__hero"><img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=1200&h=600&fit=crop" alt="Bot Discord"></div>
-  <div class="modal__body">
-    <h3>MusicMod Bot — Bot Discord multifonction</h3>
-    <div class="modal__meta">
-      <span>Projet personnel · depuis 2024</span><span>150+ membres</span><span>Maintenu activement</span>
-    </div>
-
-    <h4>Contexte</h4>
-    <p>Développé pour ma communauté Discord de joueurs, ce bot combine lecture musicale et modération automatisée. Démarré en 2024, il tourne toujours et continue d'évoluer.</p>
-
-    <h4>Fonctionnalités</h4>
-    <ul class="bullets">
-      <li>Lecture de musique depuis YouTube, Spotify et SoundCloud.</li>
-      <li>File d'attente avec shuffle, boucle et vote de passage.</li>
-      <li>Modération : anti-spam, anti-liens, exclusion temporaire.</li>
-      <li>Système de niveaux et d'XP avec classement.</li>
-      <li>Tickets de support et logs automatiques des actions de modération.</li>
-      <li>Dashboard web de configuration en Flask.</li>
-    </ul>
-
-    <h4>Difficulté &amp; solution</h4>
-    <p>Gérer plusieurs serveurs en parallèle sans bloquer le bot. La réponse : <strong>asyncio</strong> pour l'exécution concurrente et les <strong>Cogs</strong> de Discord.py pour modulariser chaque fonctionnalité indépendamment.</p>
-
-    <div class="modal__note">Technologies : Python 3.10, Discord.py, yt-dlp, Flask, PostgreSQL. Hébergement sur VPS.</div>
-
-    <div class="modal__foot">
-      <a class="btn btn--ghost btn--sm" href="https://github.com/N-Dardalhon" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Voir sur GitHub</a>
-    </div>
-  </div>
-</template>
-
-<template id="tpl-weather">
-  <div class="modal__hero"><img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=1200&h=600&fit=crop" alt="WeatherHub"></div>
-  <div class="modal__body">
-    <h3>WeatherHub — Dashboard météo intelligent</h3>
-    <div class="modal__meta">
-      <span>Projet personnel</span><span>2 semaines</span><span>Solo</span>
-    </div>
-
-    <h4>Contexte</h4>
-    <p>Projet d'apprentissage de Vue.js 3 et de la consommation d'API externes : afficher des données météo en temps réel avec des visualisations avancées et une géolocalisation automatique.</p>
-
-    <h4>Fonctionnalités</h4>
-    <ul class="bullets">
-      <li>Météo actuelle et prévisions sur sept jours.</li>
-      <li>Géolocalisation automatique ou recherche par ville.</li>
-      <li>Graphiques interactifs Chart.js : température, humidité, vent.</li>
-      <li>Carte interactive Leaflet avec calque météo.</li>
-      <li>Favoris persistés en localStorage et alertes personnalisées.</li>
-      <li>PWA installable sur mobile.</li>
-    </ul>
-
-    <h4>Difficulté &amp; solution</h4>
-    <p>Rester dans les quotas gratuits de l'API. J'ai mis en place un <strong>cache avec expiration</strong> côté client et du <strong>debouncing</strong> sur la recherche, ce qui a réduit drastiquement le nombre d'appels.</p>
-
-    <div class="modal__note">Technologies : Vue.js 3, Vite, OpenWeatherMap API, Chart.js, Leaflet.</div>
-
-    <div class="modal__foot">
-      <a class="btn btn--ghost btn--sm" href="https://github.com/N-Dardalhon" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Voir sur GitHub</a>
-    </div>
-  </div>
-</template>
-
-<!-- ============ Scripts ============ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/shaders/CopyShader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/EffectComposer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/RenderPass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/ShaderPass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-<script src="assets/js/scene.js"></script>
+<script src="assets/js/three-core.js"></script>
+<script src="assets/js/scene-hero.js"></script>
 <script src="assets/js/app.js"></script>
-
 </body>
 </html>

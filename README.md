@@ -3,71 +3,88 @@
 Portfolio personnel de Nathan Dardalhon, développeur full stack en alternance chez Keole / Gazoline
 et étudiant en 3ᵉ année de BUT Informatique à l'IUT de Montpellier-Sète.
 
-Site statique, écrit à la main : **aucun framework, aucune étape de build**. Il suffit d'ouvrir
-`index.html` (ou de servir le dossier) pour le faire tourner.
+Site statique multi-pages, écrit à la main : **aucun framework, aucune étape de build**.
 
 ---
+
+## Pages
+
+| Fichier | Contenu | Scène 3D |
+|---|---|---|
+| `index.html` | Accueil : hero, profil, chiffres, sélection de projets | Goutte de métal liquide |
+| `projets.html` | Galerie interactive + six fiches détaillées | Galerie WebGL + champ de points |
+| `parcours.html` | Frise, stack technique, compétences du référentiel BUT | Champ de points |
+| `alternance.html` | Missions, projet mybateau.fr, bilan | Champ de points |
+| `contact.html` | Formulaire et coordonnées | Goutte (variante discrète) |
 
 ## Structure
 
 ```
-index.html            Page principale (hero, profil, stack, projets, parcours, compétences, contact)
-alternance.html       Page dédiée à l'alternance Keole / Gazoline
 assets/
-  css/app.css         Design system complet : tokens, composants, animations, responsive
-  js/scene.js         Scène 3D Three.js (shaders GLSL custom, particules, bloom)
-  js/app.js           Interactions : préchargement, curseur, révélations, filtres, modales…
-img/                  Captures de projets, CV PDF, favicons
-legacy/               Ancien thème Bootstrap « DevFolio » conservé pour référence (non utilisé)
+  css/app.css            Design system : tokens, composants, animations, responsive
+  js/three-core.js       Socle 3D : rendu, environnement studio procédural, boucle unique
+  js/scene-hero.js       Goutte de métal liquide
+  js/scene-field.js      Champ de points ondulant
+  js/scene-gallery.js    Galerie de projets en 3D
+  js/app.js              Interface : voile, curseur, navigation, révélations, modales…
+img/                     Captures de projets, CV PDF, favicons
+legacy/                  Ancien thème Bootstrap « DevFolio », conservé pour référence
 ```
 
-## Ce qui tourne sous le capot
+## Les trois scènes 3D
 
-### Fond 3D (`assets/js/scene.js`)
+### Goutte de métal liquide — `scene-hero.js`
 
-- **Noyau organique** : icosaèdre déformé dans le *vertex shader* par du bruit simplex 3D
-  (implémentation Ashima / Gustavson), avec un rendu additif et un *fresnel* pour le liseré lumineux.
-- **Coque filaire** réactive, déformée par un second champ de bruit à une autre fréquence.
-- **14 000 particules** (5 000 sur mobile) animées entièrement sur GPU : dérive par bruit,
-  respiration, attraction douce vers le curseur, souffle au clic.
-- **Trois anneaux orbitaux** en rendu additif.
-- **Bloom** via `UnrealBloomPass`, chargé de façon optionnelle : si le post-processing n'est pas
-  disponible, la scène bascule automatiquement sur un rendu direct.
-- Réactions temps réel à la souris, au scroll et au clic ; le fond s'atténue hors du hero pour
-  préserver la lisibilité du texte.
+Un icosaèdre déformé dans le **vertex shader** par du bruit simplex 3D à deux octaves. Les normales
+sont **recalculées par différences finies** (deux échantillons sur le plan tangent), sans quoi les
+reflets seraient faux sur une surface déformée.
 
-### Dégradations gracieuses
+Le chrome est éclairé par une **carte d'environnement studio générée à l'exécution** : un dégradé et
+quatre sources lumineuses peints sur un canvas 2D, convertis en carte équirectangulaire puis filtrés
+par `PMREMGenerator`. Aucun fichier HDR à télécharger.
 
-Le site reste entièrement fonctionnel si :
+La forme réagit au pointeur ; la scène s'atténue dès qu'on quitte le premier écran pour que le texte
+reste lisible.
 
-- WebGL est indisponible ou le CDN Three.js injoignable → le fond 3D est simplement absent ;
-- l'utilisateur a activé `prefers-reduced-motion` → animations et parallaxes désactivées ;
-- JavaScript est désactivé → le contenu HTML reste intégralement lisible.
+### Champ de points — `scene-field.js`
 
-### Interactions (`assets/js/app.js`)
+Une grille régulière (132 × 76 points) ondulant sous deux sinus croisés et une couche de bruit, avec
+un creux qui suit le curseur. Atténuation radiale pour que la grille se fonde dans le noir.
 
-Préchargement animé, curseur personnalisé avec magnétisme, révélations au scroll
-(`IntersectionObserver`), machine à écrire, compteurs animés, filtres de projets, modales de projet
-alimentées par des `<template>`, accordéon accessible, carrousel de citations, formulaire de contact
-en `mailto:`.
+### Galerie de projets — `scene-gallery.js`
+
+Six plans texturés disposés en arc, en défilement infini au **glisser**, à la **molette**, aux
+**flèches** du clavier — et clic pour ouvrir la fiche. Les plans se courbent avec la vitesse de
+défilement, subissent une légère décomposition RVB, et les plans latéraux se désaturent. Le titre,
+les métadonnées et la pagination HTML se synchronisent sur le plan centré.
+
+## Dégradations gracieuses
+
+Le site reste entièrement utilisable si :
+
+- WebGL est indisponible ou le CDN Three.js injoignable → les scènes sont simplement absentes ;
+- `prefers-reduced-motion` est activé → animations et parallaxes désactivées ;
+- JavaScript est désactivé → tout le contenu HTML reste lisible, y compris la liste complète des
+  projets sous la galerie.
 
 ## Dépendances externes (CDN, aucune installation)
 
 | Ressource | Usage |
 |---|---|
 | Three.js r134 | Rendu 3D |
-| Three.js examples (postprocessing) | Bloom |
-| Google Fonts — Space Grotesk, Inter, JetBrains Mono | Typographie |
-| Font Awesome 6 | Icônes |
+| Google Fonts — Inter Tight, Instrument Serif, JetBrains Mono | Typographie |
+
+Aucune bibliothèque d'icônes : les flèches sont des caractères Unicode.
 
 ## Développement
 
 ```bash
-npx http-server -p 8777     # puis ouvrir http://localhost:8777
+npx http-server -p 8777     # puis http://localhost:8777
 ```
 
-Un simple double-clic sur `index.html` fonctionne aussi : tous les scripts sont chargés en scripts
-classiques (pas de modules ES), donc sans blocage CORS en `file://`.
+Servir le site plutôt que d'ouvrir les fichiers en `file://` : les textures de la galerie 3D sont
+chargées par WebGL, ce que Chrome bloque sur le protocole `file://`. Le reste du site fonctionne
+dans les deux cas.
 
 ## Licence
 

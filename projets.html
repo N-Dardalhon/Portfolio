@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Projets — Nathan Dardalhon</title>
+<meta name="description" content="Projets de Nathan Dardalhon : SAE Train en JavaFX, site d'escape game, RPG Python primé, TaskFlow, bot Discord et dashboard météo.">
+<meta name="theme-color" content="#08080a">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body id="top">
+
+<div class="veil">
+  <div class="veil__row"><span>Chargement</span><span class="veil__num">000</span></div>
+  <div class="veil__line"><i></i></div>
+</div>
+
+<canvas class="scene" data-scene="field"></canvas>
+<div class="noise"></div>
+<div class="progress"></div>
+
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="brand__dot"></span>
+    <span>Nathan Dardalhon<small>Développeur full stack</small></span>
+  </a>
+  <div class="menu">
+    <a href="index.html">Accueil</a>
+    <a href="projets.html">Projets</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="alternance.html">Alternance</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <button class="burger" type="button" aria-label="Menu"><span></span><span></span></button>
+</nav>
+
+<div class="sheet">
+  <a href="index.html">Accueil</a>
+  <a href="projets.html">Projets</a>
+  <a href="parcours.html">Parcours</a>
+  <a href="alternance.html">Alternance</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<main class="shell">
+
+  <header class="phead">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Fil d'Ariane">
+        <a href="index.html">Accueil</a><span>/</span><span style="color:var(--txt)">Projets</span>
+      </nav>
+      <h1 class="d1"><span class="it">Six</span> projets</h1>
+      <p class="body" style="max-width:54ch;margin-top:26px">
+        Projets d'école, game jam et projets personnels. Chaque fiche détaille le contexte,
+        mon rôle, les difficultés rencontrées et la manière dont je les ai résolues.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== Galerie 3D ===== -->
+  <section class="sect--sm" style="padding-top:0">
+    <div class="wrap">
+      <div class="gallery">
+        <canvas class="scene scene--interactive gallery__canvas" data-scene="gallery"></canvas>
+        <div class="gallery__hud wrap" style="padding-inline:0">
+          <div>
+            <div class="gallery__title" id="gallery-title">SAE Train</div>
+            <div class="gallery__meta" id="gallery-meta">Java · JavaFX · UML</div>
+          </div>
+          <div>
+            <div class="gallery__hint">Glisser · molette · ← → · clic pour ouvrir</div>
+            <div class="gallery__dots" id="gallery-dots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Données lues par la galerie -->
+  <div id="gallery-data" hidden>
+    <div data-key="train"    data-src="img/work-train.png"  data-title="SAE Train"         data-meta="Java · JavaFX · UML · Binôme"></div>
+    <div data-key="escape"   data-src="img/work-escape.png" data-title="Site Escape Game"  data-meta="PHP · MySQL · Figma · Équipe de 4"></div>
+    <div data-key="rpg"      data-src="img/work-rpg.png"    data-title="RPG Python"        data-meta="1er prix Nuit du Code · Pygame"></div>
+    <div data-key="taskflow" data-src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&amp;h=800&amp;fit=crop" data-title="TaskFlow" data-meta="React · Node.js · MongoDB"></div>
+    <div data-key="bot"      data-src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=1200&amp;h=800&amp;fit=crop" data-title="MusicMod Bot" data-meta="Python · Discord.py · Flask"></div>
+    <div data-key="weather"  data-src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=1200&amp;h=800&amp;fit=crop" data-title="WeatherHub" data-meta="Vue 3 · Chart.js · Leaflet"></div>
+  </div>
+
+  <!-- ===== Liste complète ===== -->
+  <section class="sect">
+    <div class="wrap">
+      <div class="head" data-rise>
+        <span class="label">Index</span>
+        <h2 class="d2 spl">Toutes les fiches.</h2>
+      </div>
+
+      <div class="rows" style="margin-top:clamp(34px,4vw,56px)">
+        <div class="row" role="button" tabindex="0" data-project="train" data-peek="img/work-train.png" data-rise>
+          <span class="row__n">01</span>
+          <span class="row__t">SAE Train</span>
+          <span class="row__m">SAE S2.01 · Java, JavaFX, UML</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </div>
+        <div class="row" role="button" tabindex="0" data-project="escape" data-peek="img/work-escape.png" data-rise>
+          <span class="row__n">02</span>
+          <span class="row__t">Site Escape Game</span>
+          <span class="row__m">SAE S3.01 · PHP, MySQL, Figma</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </div>
+        <div class="row" role="button" tabindex="0" data-project="rpg" data-peek="img/work-rpg.png" data-rise>
+          <span class="row__n">03</span>
+          <span class="row__t">RPG Python</span>
+          <span class="row__m">Nuit du Code 2024 · 1<sup>er</sup> prix</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </div>
+        <div class="row" role="button" tabindex="0" data-project="taskflow" data-peek="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&amp;h=600&amp;fit=crop" data-rise>
+          <span class="row__n">04</span>
+          <span class="row__t">TaskFlow</span>
+          <span class="row__m">Personnel · React, Node.js, MongoDB</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </div>
+        <div class="row" role="button" tabindex="0" data-project="bot" data-peek="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&amp;h=600&amp;fit=crop" data-rise>
+          <span class="row__n">05</span>
+          <span class="row__t">MusicMod Bot</span>
+          <span class="row__m">Personnel · Python, Discord.py, Flask</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </div>
+        <div class="row" role="button" tabindex="0" data-project="weather" data-peek="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&amp;h=600&amp;fit=crop" data-rise>
+          <span class="row__n">06</span>
+          <span class="row__t">WeatherHub</span>
+          <span class="row__m">Personnel · Vue 3, Chart.js, Leaflet</span>
+          <span class="row__go" aria-hidden="true">↗</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect--sm">
+    <div class="wrap">
+      <hr class="rule">
+      <div style="padding-top:clamp(36px,5vw,64px);display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+        <p class="body" style="max-width:44ch;margin:0">
+          Envie d'en savoir plus sur ma façon de travailler en entreprise ?
+        </p>
+        <span style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn" href="alternance.html">Mon alternance <span class="btn__ico">→</span></a>
+          <a class="btn btn--fill" href="contact.html">Me contacter <span class="btn__ico">→</span></a>
+        </span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__k">Nathan Dardalhon</div>
+        <p class="body" style="max-width:32ch;font-size:.9rem">
+          Développeur full stack en alternance chez Keole / Gazoline. Disponible pour un Master
+          en alternance à la rentrée 2026.
+        </p>
+      </div>
+      <div>
+        <div class="foot__k">Pages</div>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="parcours.html">Parcours</a></li>
+          <li><a href="alternance.html">Alternance</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot__k">Ailleurs</div>
+        <ul>
+          <li><a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">CV (PDF) ↓</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span data-year>2026</span> — Sète, France</span>
+      <span>HTML · CSS · JavaScript · Three.js</span>
+      <a href="#top">Haut de page ↑</a>
+    </div>
+  </div>
+</footer>
+
+<button class="up" type="button" aria-label="Haut de page">↑</button>
+
+<!-- ===== Modale ===== -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal__bg"></div>
+  <div class="modal__win">
+    <button class="modal__x" type="button" aria-label="Fermer">✕</button>
+    <div id="modal-slot"></div>
+  </div>
+</div>
+
+<!-- ===== Fiches ===== -->
+<template id="tpl-train">
+  <div class="modal__img"><img src="img/work-train.png" alt="Interface du jeu Train"></div>
+  <div class="modal__c">
+    <h3>SAE Train — Les Aventuriers du Rail en JavaFX</h3>
+    <div class="tags"><span class="tag">SAE S2.01 · 2024</span><span class="tag">6 semaines</span><span class="tag">Binôme</span><span class="tag">IHM &amp; UML</span></div>
+
+    <h4>Contexte</h4>
+    <p>SAE S2.01 « Développement d'une application », semestre 2 du BUT Informatique. L'objectif : recréer le jeu de société <em>Les Aventuriers du Rail</em> en version numérique, en binôme, sur six semaines.</p>
+
+    <h4>Travail réalisé</h4>
+    <ul class="ticks">
+      <li>Conception de l'architecture logicielle avec diagrammes UML : classes, séquences, cas d'utilisation.</li>
+      <li>Développement de l'interface graphique JavaFX et gestion des événements utilisateur.</li>
+      <li>Logique métier : gestion des routes, des wagons et du calcul de score.</li>
+      <li>Pattern MVC pour séparer strictement l'affichage de la logique.</li>
+    </ul>
+
+    <h4>Difficulté &amp; solution</h4>
+    <p>La synchronisation entre l'affichage et l'état du jeu s'est révélée le point dur. Je l'ai résolue avec le pattern <strong>Observer</strong> : l'interface s'abonne aux changements du modèle et ne se redessine que lorsque c'est nécessaire.</p>
+
+    <h4>Compétences</h4>
+    <div class="tags"><span class="tag">POO</span><span class="tag">Conception UML</span><span class="tag">JavaFX</span><span class="tag">MVC / Observer</span><span class="tag">Git</span><span class="tag">Travail en binôme</span></div>
+
+    <div class="quote-box">Java 17 · JavaFX · SceneBuilder · UML · Git</div>
+  </div>
+</template>
+
+<template id="tpl-escape">
+  <div class="modal__img"><img src="img/work-escape.png" alt="Site web escape game"></div>
+  <div class="modal__c">
+    <h3>Site Escape Game — Plateforme de réservation</h3>
+    <div class="tags"><span class="tag">SAE S3.01 · 2024</span><span class="tag">Équipe de 4</span><span class="tag">Front-end &amp; UX</span></div>
+
+    <h4>Contexte</h4>
+    <p>SAE S3.01 « Développement d'une application web », semestre 3 du BUT Informatique. Objectif : un site complet pour une entreprise fictive d'escape game, avec un système de réservation réellement fonctionnel.</p>
+
+    <h4>Travail réalisé</h4>
+    <ul class="ticks">
+      <li>Maquettes UI/UX sur Figma, avec un parcours utilisateur optimisé.</li>
+      <li>Front-end responsive en HTML5, CSS3 et JavaScript vanilla.</li>
+      <li>Animations interactives pour immerger le visiteur dans l'univers des salles.</li>
+      <li>Back-end PHP : réservations, créneaux, base de données MySQL.</li>
+      <li>Authentification sécurisée : hachage des mots de passe, gestion des sessions.</li>
+    </ul>
+
+    <h4>Difficulté &amp; solution</h4>
+    <p>Deux clients pouvaient viser le même créneau au même instant. J'ai mis en place un <strong>verrouillage optimiste</strong> avec revérification côté serveur au moment de la validation, ce qui élimine les doubles réservations.</p>
+
+    <h4>Compétences</h4>
+    <div class="tags"><span class="tag">Full stack</span><span class="tag">Responsive</span><span class="tag">UX / UI</span><span class="tag">MySQL</span><span class="tag">Sécurité web</span><span class="tag">Agile</span></div>
+
+    <div class="quote-box">HTML5 · CSS3 · JavaScript · PHP 8 · MySQL · Figma</div>
+  </div>
+</template>
+
+<template id="tpl-rpg">
+  <div class="modal__img"><img src="img/work-rpg.png" alt="Jeu RPG Python"></div>
+  <div class="modal__c">
+    <h3>RPG Python — 1<sup>er</sup> prix de la Nuit du Code 2024</h3>
+    <div class="tags"><span class="tag">Game jam · 2024</span><span class="tag">6 heures</span><span class="tag">Équipe de 3</span><span class="tag">Gameplay &amp; combat</span></div>
+
+    <h4>Contexte</h4>
+    <p>Développé lors de la <strong>Nuit du Code 2024</strong>, une game jam organisée par l'IUT : six heures pour livrer un jeu jouable, en équipe de trois. Notre équipe a remporté la première place.</p>
+
+    <h4>Travail réalisé</h4>
+    <ul class="ticks">
+      <li>Conception éclair de l'architecture sous forte contrainte de temps.</li>
+      <li>Système de combat tour par tour avec gestion complète des statistiques.</li>
+      <li>Carte explorable et rencontres aléatoires.</li>
+      <li>Sauvegarde et chargement de partie au format JSON.</li>
+      <li>Animations et effets visuels avec Pygame.</li>
+    </ul>
+
+    <h4>Difficulté &amp; solution</h4>
+    <p>Le temps, évidemment. Nous avons découpé le jeu en <strong>modules indépendants</strong> — combat, carte, interface — développés en parallèle puis intégrés dans la dernière heure. Personne n'a attendu personne.</p>
+
+    <h4>Résultat</h4>
+    <p><strong>1<sup>er</sup> prix</strong> — Nuit du Code 2024, IUT de Montpellier-Sète.</p>
+
+    <div class="quote-box">Python 3.11 · Pygame · JSON</div>
+  </div>
+</template>
+
+<template id="tpl-taskflow">
+  <div class="modal__img"><img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1400&h=800&fit=crop" alt="TaskFlow"></div>
+  <div class="modal__c">
+    <h3>TaskFlow — Application de gestion de tâches</h3>
+    <div class="tags"><span class="tag">Personnel · été 2025</span><span class="tag">3 semaines</span><span class="tag">Solo</span></div>
+
+    <h4>Contexte</h4>
+    <p>Projet personnel mené pour approfondir le développement web moderne : construire une application de productivité complète, de A à Z, avec les technologies les plus demandées sur le marché.</p>
+
+    <h4>Fonctionnalités</h4>
+    <ul class="ticks">
+      <li>Tableau Kanban interactif avec glisser-déposer (React DnD).</li>
+      <li>Authentification JWT avec refresh token.</li>
+      <li>API REST complète en Node.js / Express.</li>
+      <li>Base MongoDB via Mongoose.</li>
+      <li>Notifications en temps réel avec Socket.io.</li>
+      <li>Thème sombre / clair persistant.</li>
+      <li>Déploiement : Vercel pour le front, Railway pour l'API.</li>
+    </ul>
+
+    <h4>Difficulté &amp; solution</h4>
+    <p>L'état global devenait ingérable à mesure que les écrans s'ajoutaient. Le passage à <strong>Redux Toolkit</strong> et <strong>RTK Query</strong> a centralisé l'état et mis les requêtes en cache, divisant nettement la complexité.</p>
+
+    <div class="quote-box">React 18 · Node.js · Express · MongoDB · Socket.io · Tailwind CSS</div>
+    <p style="margin-top:24px"><a class="btn btn--sm" href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">Voir sur GitHub <span class="btn__ico">↗</span></a></p>
+  </div>
+</template>
+
+<template id="tpl-bot">
+  <div class="modal__img"><img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=1400&h=800&fit=crop" alt="Bot Discord"></div>
+  <div class="modal__c">
+    <h3>MusicMod Bot — Bot Discord multifonction</h3>
+    <div class="tags"><span class="tag">Personnel · depuis 2024</span><span class="tag">150+ membres</span><span class="tag">Maintenu</span></div>
+
+    <h4>Contexte</h4>
+    <p>Développé pour ma communauté Discord de joueurs, ce bot combine lecture musicale et modération automatisée. Démarré en 2024, il tourne toujours et continue d'évoluer.</p>
+
+    <h4>Fonctionnalités</h4>
+    <ul class="ticks">
+      <li>Lecture de musique depuis YouTube, Spotify et SoundCloud.</li>
+      <li>File d'attente avec shuffle, boucle et vote de passage.</li>
+      <li>Modération : anti-spam, anti-liens, exclusion temporaire.</li>
+      <li>Système de niveaux et d'XP avec classement.</li>
+      <li>Tickets de support et logs automatiques de modération.</li>
+      <li>Dashboard web de configuration en Flask.</li>
+    </ul>
+
+    <h4>Difficulté &amp; solution</h4>
+    <p>Servir plusieurs serveurs en parallèle sans bloquer le bot. La réponse : <strong>asyncio</strong> pour l'exécution concurrente et les <strong>Cogs</strong> de Discord.py pour modulariser chaque fonctionnalité.</p>
+
+    <div class="quote-box">Python 3.10 · Discord.py · yt-dlp · Flask · PostgreSQL · VPS</div>
+    <p style="margin-top:24px"><a class="btn btn--sm" href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">Voir sur GitHub <span class="btn__ico">↗</span></a></p>
+  </div>
+</template>
+
+<template id="tpl-weather">
+  <div class="modal__img"><img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=1400&h=800&fit=crop" alt="WeatherHub"></div>
+  <div class="modal__c">
+    <h3>WeatherHub — Dashboard météo</h3>
+    <div class="tags"><span class="tag">Personnel</span><span class="tag">2 semaines</span><span class="tag">Solo</span></div>
+
+    <h4>Contexte</h4>
+    <p>Projet d'apprentissage de Vue.js 3 et de la consommation d'API externes : afficher des données météo en temps réel avec des visualisations avancées et une géolocalisation automatique.</p>
+
+    <h4>Fonctionnalités</h4>
+    <ul class="ticks">
+      <li>Météo actuelle et prévisions sur sept jours.</li>
+      <li>Géolocalisation automatique ou recherche par ville.</li>
+      <li>Graphiques interactifs Chart.js : température, humidité, vent.</li>
+      <li>Carte interactive Leaflet avec calque météo.</li>
+      <li>Favoris en localStorage et alertes personnalisées.</li>
+      <li>PWA installable sur mobile.</li>
+    </ul>
+
+    <h4>Difficulté &amp; solution</h4>
+    <p>Rester dans les quotas gratuits de l'API. J'ai mis en place un <strong>cache avec expiration</strong> côté client et du <strong>debouncing</strong> sur la recherche, ce qui a réduit drastiquement le nombre d'appels.</p>
+
+    <div class="quote-box">Vue.js 3 · Vite · OpenWeatherMap · Chart.js · Leaflet</div>
+    <p style="margin-top:24px"><a class="btn btn--sm" href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">Voir sur GitHub <span class="btn__ico">↗</span></a></p>
+  </div>
+</template>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="assets/js/three-core.js"></script>
+<script src="assets/js/scene-field.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/scene-gallery.js"></script>
+</body>
+</html>

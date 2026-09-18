@@ -1,5 +1,5 @@
 /* =============================================================
-   app.js — Interactions du portfolio
+   app.js — Interface (partagé par toutes les pages)
    ============================================================= */
 (function () {
   "use strict";
@@ -10,101 +10,70 @@
   var coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
   /* ---------------------------------------------------------
-     1. Préchargement
+     1. Voile de chargement
      --------------------------------------------------------- */
-  (function loader() {
-    var el = $(".loader");
+  (function veil() {
+    var el = $(".veil");
     if (!el) { document.body.classList.add("is-ready"); return; }
 
-    var bar = $(".loader__bar i", el);
-    var pct = $(".loader__pct", el);
-    var name = $(".loader__name", el);
-
-    if (name && !name.dataset.split) {
-      name.dataset.split = "1";
-      name.innerHTML = name.textContent.split("").map(function (ch, i) {
-        return '<span style="animation-delay:' + (i * 0.035) + 's">' + (ch === " " ? "&nbsp;" : ch) + "</span>";
-      }).join("");
-    }
+    var bar = $(".veil__line i", el);
+    var num = $(".veil__num", el);
+    var seen = false;
+    try { seen = sessionStorage.getItem("nd-seen") === "1"; } catch (e) {}
 
     document.body.classList.add("is-locked");
 
-    var p = 0;
-    var done = false;
-    var loaded = false;
-    window.addEventListener("load", function () { loaded = true; });
-
-    var tick = setInterval(function () {
-      var ceiling = loaded ? 100 : 92;
-      p += Math.max(0.6, (ceiling - p) * 0.09);
-      if (p >= ceiling) p = ceiling;
-      if (bar) bar.style.right = (100 - p) + "%";
-      if (pct) pct.textContent = String(Math.round(p)).padStart(3, "0") + " %";
-      if (p >= 99.6 && !done) {
-        done = true;
-        clearInterval(tick);
-        setTimeout(finish, 320);
-      }
-    }, 34);
-
-    // Garde-fou : ne jamais bloquer plus de 5 s
-    setTimeout(function () { if (!done) { done = true; clearInterval(tick); finish(); } }, 5000);
-
-    function finish() {
-      el.classList.add("is-done");
+    function done() {
+      el.classList.add("is-out");
       document.body.classList.remove("is-locked");
       document.body.classList.add("is-ready");
-      setTimeout(function () { el.remove(); }, 700);
+      try { sessionStorage.setItem("nd-seen", "1"); } catch (e) {}
+      setTimeout(function () { el.remove(); }, 800);
     }
+
+    // Déjà visité dans cette session : on ne rejoue pas le compteur.
+    if (seen || reduced) { setTimeout(done, 220); return; }
+
+    var p = 0, loaded = false, finished = false;
+    window.addEventListener("load", function () { loaded = true; });
+
+    var t = setInterval(function () {
+      var cap = loaded ? 100 : 88;
+      p += Math.max(0.8, (cap - p) * 0.08);
+      if (p > cap) p = cap;
+      if (bar) bar.style.transform = "scaleX(" + (p / 100) + ")";
+      if (num) num.textContent = String(Math.round(p)).padStart(3, "0");
+      if (p >= 99.5 && !finished) { finished = true; clearInterval(t); setTimeout(done, 340); }
+    }, 32);
+
+    setTimeout(function () { if (!finished) { finished = true; clearInterval(t); done(); } }, 4500);
   })();
 
   /* ---------------------------------------------------------
-     2. Curseur personnalisé + magnétisme
+     2. Curseur
      --------------------------------------------------------- */
   if (!coarse && !reduced) {
-    var dot = document.createElement("div");
-    var ring = document.createElement("div");
-    dot.className = "cursor-dot";
-    ring.className = "cursor-ring";
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
+    var cur = document.createElement("div");
+    cur.className = "cur";
+    document.body.appendChild(cur);
 
-    var mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    var rx = mx, ry = my;
-
-    document.addEventListener("pointermove", function (e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = "translate(" + mx + "px," + my + "px)";
-    }, { passive: true });
-
-    document.addEventListener("pointerdown", function () { ring.classList.add("is-down"); });
-    document.addEventListener("pointerup", function () { ring.classList.remove("is-down"); });
-
-    (function loop() {
-      rx += (mx - rx) * 0.17;
-      ry += (my - ry) * 0.17;
-      ring.style.transform = "translate(" + rx + "px," + ry + "px)";
-      requestAnimationFrame(loop);
+    var cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
+    document.addEventListener("pointermove", function (e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    (function run() {
+      cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
+      cur.style.transform = "translate(" + cx + "px," + cy + "px)";
+      requestAnimationFrame(run);
     })();
 
-    var HOVER = "a, button, .work, .chip, input, textarea, .acc__head, [data-magnetic]";
+    var BIG = "a, button, .row, .acc__h, input, textarea, [data-big]";
     document.addEventListener("pointerover", function (e) {
-      if (e.target.closest && e.target.closest(HOVER)) ring.classList.add("is-hover");
+      if (e.target.closest && e.target.closest('[data-scene="gallery"]')) { cur.classList.add("is-drag"); return; }
+      if (e.target.closest && e.target.closest(BIG)) cur.classList.add("is-lg");
     });
     document.addEventListener("pointerout", function (e) {
-      if (e.target.closest && e.target.closest(HOVER)) ring.classList.remove("is-hover");
-    });
-
-    // Magnétisme
-    $$("[data-magnetic]").forEach(function (el) {
-      var strength = parseFloat(el.dataset.magnetic) || 0.35;
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        var dx = e.clientX - (r.left + r.width / 2);
-        var dy = e.clientY - (r.top + r.height / 2);
-        el.style.transform = "translate(" + dx * strength + "px," + dy * strength + "px)";
-      });
-      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+      if (!e.target.closest) return;
+      if (e.target.closest('[data-scene="gallery"]')) cur.classList.remove("is-drag");
+      if (e.target.closest(BIG)) cur.classList.remove("is-lg");
     });
   }
 
@@ -113,104 +82,122 @@
      --------------------------------------------------------- */
   (function nav() {
     var nav = $(".nav");
-    if (!nav) return;
-    var bar = $(".nav__scroll i", nav);
-    var burger = $(".nav__burger", nav);
-    var drawer = $(".drawer");
+    var sheet = $(".sheet");
+    var burger = $(".burger");
+    var bar = $(".progress");
+    var up = $(".up");
     var last = 0;
+
+    // Lien actif d'après l'URL
+    var here = location.pathname.split("/").pop() || "index.html";
+    $$(".menu a, .sheet a").forEach(function (a) {
+      var href = (a.getAttribute("href") || "").split("#")[0];
+      if (href && href === here) a.classList.add("on");
+    });
 
     function onScroll() {
       var y = window.scrollY;
-      nav.classList.toggle("is-stuck", y > 40);
-      if (!drawer || !drawer.classList.contains("is-open")) {
-        nav.classList.toggle("is-hidden", y > last && y > 420);
+      if (nav) {
+        nav.classList.toggle("is-stuck", y > 30);
+        if (!document.body.classList.contains("menu-open")) {
+          nav.classList.toggle("is-up", y > last && y > 400);
+        }
       }
       last = y;
-
       var max = document.body.scrollHeight - window.innerHeight;
       if (bar) bar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
-
-      var top = $(".to-top");
-      if (top) top.classList.toggle("is-on", y > 700);
+      if (up) up.classList.toggle("on", y > 600);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    if (burger && drawer) {
+    if (burger && sheet) {
       burger.addEventListener("click", function () {
-        var open = drawer.classList.toggle("is-open");
-        nav.classList.toggle("is-open", open);
+        var open = !sheet.classList.contains("is-open");
+        sheet.classList.toggle("is-open", open);
+        document.body.classList.toggle("menu-open", open);
         document.body.classList.toggle("is-locked", open);
-      });
-      $$("a", drawer).forEach(function (a) {
-        a.addEventListener("click", function () {
-          drawer.classList.remove("is-open");
-          nav.classList.remove("is-open");
-          document.body.classList.remove("is-locked");
-        });
       });
     }
 
-    // Défilement doux
+    if (up) up.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+
+    // Ancres internes
     $$('a[href^="#"]').forEach(function (a) {
       a.addEventListener("click", function (e) {
         var id = a.getAttribute("href");
         if (!id || id === "#") return;
-        var t = document.querySelector(id);
+        var t = $(id);
         if (!t) return;
         e.preventDefault();
-        var y = t.getBoundingClientRect().top + window.scrollY - 92;
-        window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
-        history.replaceState(null, "", id);
+        if (sheet) { sheet.classList.remove("is-open"); document.body.classList.remove("menu-open", "is-locked"); }
+        window.scrollTo({
+          top: t.getBoundingClientRect().top + window.scrollY - 80,
+          behavior: reduced ? "auto" : "smooth"
+        });
       });
     });
-
-    // Lien actif
-    var sections = $$("section[id]");
-    var links = $$(".nav__link[href^='#']");
-    if (sections.length && links.length && "IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          var id = "#" + en.target.id;
-          links.forEach(function (l) { l.classList.toggle("is-active", l.getAttribute("href") === id); });
-        });
-      }, { rootMargin: "-45% 0px -50% 0px" });
-      sections.forEach(function (s) { io.observe(s); });
-    }
   })();
 
   /* ---------------------------------------------------------
-     4. Révélations au scroll + découpe de texte
+     4. Transition entre pages
      --------------------------------------------------------- */
-  (function reveal() {
-    $$(".split").forEach(function (el) {
-      if (el.dataset.split) return;
-      el.dataset.split = "1";
+  (function swipe() {
+    if (reduced) return;
+    var el = document.createElement("div");
+    el.className = "swipe";
+    document.body.appendChild(el);
+
+    $$('a[href$=".html"]').forEach(function (a) {
+      if (a.target === "_blank" || a.hasAttribute("download")) return;
+      a.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        var href = a.getAttribute("href");
+        if (!href || href.indexOf("http") === 0) return;
+        e.preventDefault();
+        el.classList.add("is-in");
+        setTimeout(function () { location.href = href; }, 620);
+      });
+    });
+
+    // Retour arrière depuis le cache : on nettoie le voile
+    window.addEventListener("pageshow", function (ev) {
+      if (ev.persisted) el.classList.remove("is-in");
+    });
+  })();
+
+  /* ---------------------------------------------------------
+     5. Apparitions & découpe de titres
+     --------------------------------------------------------- */
+  (function rise() {
+    $$(".spl").forEach(function (el) {
+      if (el.dataset.done) return;
+      el.dataset.done = "1";
       el.innerHTML = el.textContent.trim().split(/\s+/).map(function (w, i) {
-        return '<span class="word"><i style="transition-delay:' + (i * 0.045) + 's">' + w + "</i></span> ";
+        return '<span class="w"><i style="transition-delay:' + (i * 0.04).toFixed(2) + 's">' + w + "</i></span> ";
       }).join("");
     });
 
-    var targets = $$("[data-reveal], .split");
+    var els = $$("[data-rise], .spl");
     if (!("IntersectionObserver" in window)) {
-      targets.forEach(function (t) { t.classList.add("is-in"); });
+      els.forEach(function (e) { e.classList.add("in"); });
       return;
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
+    var io = new IntersectionObserver(function (list) {
+      list.forEach(function (en) {
         if (!en.isIntersecting) return;
-        var el = en.target;
-        var d = parseFloat(el.dataset.delay || 0);
-        setTimeout(function () { el.classList.add("is-in"); }, d * 1000);
-        io.unobserve(el);
+        var d = parseFloat(en.target.dataset.delay || 0);
+        setTimeout(function () { en.target.classList.add("in"); }, d * 1000);
+        io.unobserve(en.target);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    targets.forEach(function (t) { io.observe(t); });
+    }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+    els.forEach(function (e) { io.observe(e); });
   })();
 
   /* ---------------------------------------------------------
-     5. Machine à écrire
+     6. Machine à écrire
      --------------------------------------------------------- */
   (function typed() {
     var el = $("#typed");
@@ -218,282 +205,186 @@
     var words = (el.dataset.words || "").split("|").filter(Boolean);
     if (!words.length) return;
     if (reduced) { el.textContent = words[0]; return; }
-
-    var w = 0, c = 0, del = false;
+    var w = 0, c = 0, back = false;
     (function step() {
       var word = words[w];
-      c += del ? -1 : 1;
+      c += back ? -1 : 1;
       el.textContent = word.slice(0, c);
-      var wait = del ? 38 : 72;
-      if (!del && c === word.length) { del = true; wait = 1700; }
-      else if (del && c === 0) { del = false; w = (w + 1) % words.length; wait = 340; }
+      var wait = back ? 34 : 68;
+      if (!back && c === word.length) { back = true; wait = 1900; }
+      else if (back && c === 0) { back = false; w = (w + 1) % words.length; wait = 320; }
       setTimeout(step, wait);
     })();
   })();
 
   /* ---------------------------------------------------------
-     6. Compteurs
+     7. Compteurs & jauges
      --------------------------------------------------------- */
-  (function counters() {
-    var els = $$("[data-count]");
-    if (!els.length || !("IntersectionObserver" in window)) {
-      els.forEach(function (e) { e.textContent = e.dataset.count; });
+  (function numbers() {
+    var counts = $$("[data-count]");
+    var meters = $$(".meter__b i");
+    if (!("IntersectionObserver" in window)) {
+      counts.forEach(function (e) { e.textContent = e.dataset.count; });
+      meters.forEach(function (e) { e.style.width = e.dataset.value + "%"; });
       return;
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
+    var io = new IntersectionObserver(function (list) {
+      list.forEach(function (en) {
         if (!en.isIntersecting) return;
         var el = en.target;
         io.unobserve(el);
-        var end = parseFloat(el.dataset.count);
-        var dur = 1500, t0 = performance.now();
+        if (el.dataset.value !== undefined) { el.style.width = el.dataset.value + "%"; return; }
+        var end = parseFloat(el.dataset.count), t0 = performance.now();
         (function run(now) {
-          var p = Math.min((now - t0) / dur, 1);
-          var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(end * e);
-          if (p < 1) requestAnimationFrame(run);
-          else el.textContent = end;
+          var p = Math.min((now - t0) / 1400, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(run); else el.textContent = end;
         })(t0);
       });
-    }, { threshold: 0.5 });
-    els.forEach(function (e) { io.observe(e); });
+    }, { threshold: 0.45 });
+    counts.concat(meters).forEach(function (e) { io.observe(e); });
   })();
 
   /* ---------------------------------------------------------
-     7. Jauges
+     8. Accordéon
      --------------------------------------------------------- */
-  (function meters() {
-    var els = $$(".meter__bar i");
-    if (!els.length) return;
-    if (!("IntersectionObserver" in window)) {
-      els.forEach(function (e) { e.style.width = e.dataset.value + "%"; });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        en.target.style.width = en.target.dataset.value + "%";
-        io.unobserve(en.target);
-      });
-    }, { threshold: 0.4 });
-    els.forEach(function (e) { io.observe(e); });
-  })();
-
-  /* ---------------------------------------------------------
-     8. Lueur suiveuse + inclinaison 3D
-     --------------------------------------------------------- */
-  (function pointerFX() {
-    $$("[data-glow]").forEach(function (el) {
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
-        el.style.setProperty("--my", (e.clientY - r.top) + "px");
-      });
-    });
-
-    if (coarse || reduced) return;
-    $$("[data-tilt]").forEach(function (el) {
-      var max = parseFloat(el.dataset.tilt) || 7;
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        el.style.transform =
-          "perspective(900px) rotateY(" + (px * max) + "deg) rotateX(" + (-py * max) + "deg) translateY(-6px)";
-      });
-      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
-    });
-  })();
-
-  /* ---------------------------------------------------------
-     9. Filtres projets
-     --------------------------------------------------------- */
-  (function filters() {
-    var btns = $$(".filter");
-    var items = $$(".work");
-    if (!btns.length) return;
-    btns.forEach(function (b) {
-      b.addEventListener("click", function () {
-        btns.forEach(function (o) { o.classList.remove("is-active"); });
-        b.classList.add("is-active");
-        var f = b.dataset.filter;
-        items.forEach(function (it) {
-          var match = f === "all" || (it.dataset.cat || "").split(" ").indexOf(f) !== -1;
-          it.classList.toggle("is-out", !match);
+  $$(".acc__h").forEach(function (h) {
+    h.addEventListener("click", function () {
+      var item = h.closest(".acc__i");
+      var open = item.classList.contains("is-open");
+      var group = h.closest(".acc");
+      if (group && !open) {
+        $$(".acc__i", group).forEach(function (o) {
+          o.classList.remove("is-open");
+          var hh = $(".acc__h", o);
+          if (hh) hh.setAttribute("aria-expanded", "false");
         });
-      });
+      }
+      item.classList.toggle("is-open", !open);
+      h.setAttribute("aria-expanded", String(!open));
     });
-  })();
+  });
 
   /* ---------------------------------------------------------
-     10. Modale projets
+     9. Modale projet — exposée en global (la galerie 3D l'appelle)
      --------------------------------------------------------- */
   (function modal() {
-    var modal = $("#project-modal");
-    if (!modal) return;
-    var panel = $(".modal__panel", modal);
+    var modal = $("#modal");
+    if (!modal) { window.openProject = function () {}; return; }
+    var win = $(".modal__win", modal);
     var slot = $("#modal-slot", modal);
-    var opener = null;
+    var from = null;
 
-    function open(key) {
+    window.openProject = function (key) {
       var tpl = document.getElementById("tpl-" + key);
       if (!tpl) return;
       slot.innerHTML = "";
       slot.appendChild(tpl.content.cloneNode(true));
       modal.classList.add("is-open");
-      document.body.classList.add("is-locked");
       modal.setAttribute("aria-hidden", "false");
-      panel.scrollTop = 0;
-      var close = $(".modal__close", modal);
-      if (close) close.focus();
-    }
+      document.body.classList.add("is-locked");
+      win.scrollTop = 0;
+      var x = $(".modal__x", modal);
+      if (x) x.focus();
+    };
+
     function close() {
       modal.classList.remove("is-open");
       modal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("is-locked");
-      setTimeout(function () { slot.innerHTML = ""; }, 420);
-      if (opener) opener.focus();
+      setTimeout(function () { slot.innerHTML = ""; }, 460);
+      if (from) from.focus();
     }
 
     $$("[data-project]").forEach(function (b) {
-      b.addEventListener("click", function () { opener = b; open(b.dataset.project); });
+      b.addEventListener("click", function () { from = b; window.openProject(b.dataset.project); });
       b.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          opener = b;
-          open(b.dataset.project);
-        }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); from = b; window.openProject(b.dataset.project); }
       });
     });
+
     modal.addEventListener("click", function (e) {
-      if (e.target.closest(".modal__close") || e.target.classList.contains("modal__scrim")) close();
+      if (e.target.closest(".modal__x") || e.target.classList.contains("modal__bg")) close();
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && modal.classList.contains("is-open")) close();
     });
+
+    // Arrivée depuis un lien « projets.html#train » : on ouvre la fiche.
+    var key = location.hash.slice(1);
+    if (key && document.getElementById("tpl-" + key)) {
+      setTimeout(function () { window.openProject(key); }, 1000);
+    }
   })();
 
   /* ---------------------------------------------------------
-     11. Accordéon
+     10. Aperçu flottant sur la liste éditoriale
      --------------------------------------------------------- */
-  (function accordion() {
-    $$(".acc__head").forEach(function (head) {
-      head.addEventListener("click", function () {
-        var item = head.closest(".acc__item");
-        var open = item.classList.contains("is-open");
-        var group = head.closest(".acc");
-        if (group && !open) {
-          $$(".acc__item", group).forEach(function (o) {
-            o.classList.remove("is-open");
-            var h = $(".acc__head", o);
-            if (h) h.setAttribute("aria-expanded", "false");
-          });
-        }
-        item.classList.toggle("is-open", !open);
-        head.setAttribute("aria-expanded", String(!open));
+  (function peek() {
+    var rows = $$(".row[data-peek]");
+    if (!rows.length || coarse || reduced) return;
+
+    var box = document.createElement("div");
+    box.className = "peek";
+    var img = document.createElement("img");
+    box.appendChild(img);
+    document.body.appendChild(box);
+
+    var x = 0, y = 0, tx = 0, ty = 0, on = false;
+    document.addEventListener("pointermove", function (e) { tx = e.clientX + 170; ty = e.clientY; }, { passive: true });
+    (function run() {
+      x += (tx - x) * 0.13; y += (ty - y) * 0.13;
+      box.style.left = x + "px";
+      box.style.top = y + "px";
+      requestAnimationFrame(run);
+    })();
+
+    rows.forEach(function (r) {
+      r.addEventListener("pointerenter", function () {
+        img.src = r.dataset.peek;
+        box.classList.add("is-on");
+        on = true;
+      });
+      r.addEventListener("pointerleave", function () {
+        box.classList.remove("is-on");
+        on = false;
       });
     });
   })();
 
   /* ---------------------------------------------------------
-     12. Citations
+     11. Formulaire de contact
      --------------------------------------------------------- */
-  (function quotes() {
-    var box = $("#quote");
-    if (!box) return;
-    var text = $(".quote__text", box);
-    var who = $(".quote__author", box);
-    var dots = $(".quote__dots", box);
+  (function form() {
+    var f = $("#contact-form");
+    if (!f) return;
+    var msg = $(".formmsg", f);
 
-    var list = [
-      { q: "Talk is cheap. Show me the code.", a: "Linus Torvalds" },
-      { q: "La phrase la plus dangereuse est : « on a toujours fait comme ça ».", a: "Grace Hopper" },
-      { q: "Ce sont parfois ceux dont on n'attend rien qui font des choses inimaginables.", a: "Alan Turing" },
-      { q: "Le génie logiciel est une discipline à part entière.", a: "Margaret Hamilton" },
-      { q: "La seule façon d'apprendre un langage, c'est d'écrire des programmes avec.", a: "Dennis Ritchie" }
-    ];
-
-    var i = 0, timer;
-    list.forEach(function (_, n) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("aria-label", "Citation " + (n + 1));
-      b.addEventListener("click", function () { show(n); restart(); });
-      dots.appendChild(b);
-    });
-
-    function show(n) {
-      i = n;
-      text.style.opacity = "0";
-      text.style.transform = "translateY(10px)";
-      setTimeout(function () {
-        text.textContent = "« " + list[i].q + " »";
-        who.textContent = list[i].a;
-        text.style.transition = "opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1)";
-        text.style.opacity = "1";
-        text.style.transform = "none";
-      }, 260);
-      $$("button", dots).forEach(function (b, k) { b.classList.toggle("is-active", k === n); });
-    }
-    function restart() {
-      clearInterval(timer);
-      timer = setInterval(function () { show((i + 1) % list.length); }, 6500);
-    }
-    show(0);
-    restart();
-  })();
-
-  /* ---------------------------------------------------------
-     13. Formulaire de contact (mailto)
-     --------------------------------------------------------- */
-  (function contact() {
-    var form = $("#contact-form");
-    if (!form) return;
-    var status = $(".form-status", form);
-
-    form.addEventListener("submit", function (e) {
+    f.addEventListener("submit", function (e) {
       e.preventDefault();
-      var d = new FormData(form);
+      var d = new FormData(f);
       var name = (d.get("name") || "").toString().trim();
-      var email = (d.get("email") || "").toString().trim();
-      var subject = (d.get("subject") || "").toString().trim();
-      var message = (d.get("message") || "").toString().trim();
+      var mail = (d.get("email") || "").toString().trim();
+      var subj = (d.get("subject") || "").toString().trim();
+      var body = (d.get("message") || "").toString().trim();
 
-      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 10) {
-        status.className = "form-status err";
-        status.textContent = "Merci de renseigner un nom, un email valide et un message d'au moins 10 caractères.";
+      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail) || body.length < 10) {
+        msg.className = "formmsg err";
+        msg.textContent = "Il manque un nom, un email valide ou un message d'au moins 10 caractères.";
         return;
       }
+      location.href = "mailto:nathan.dardalhon@etu.umontpellier.fr"
+        + "?subject=" + encodeURIComponent(subj || "Contact portfolio — " + name)
+        + "&body=" + encodeURIComponent("Nom : " + name + "\nEmail : " + mail + "\n\n" + body);
 
-      var body =
-        "Nom : " + name + "\n" +
-        "Email : " + email + "\n\n" +
-        message;
-
-      window.location.href =
-        "mailto:nathan.dardalhon@etu.umontpellier.fr" +
-        "?subject=" + encodeURIComponent(subject || "Contact portfolio — " + name) +
-        "&body=" + encodeURIComponent(body);
-
-      status.className = "form-status ok";
-      status.textContent = "Votre logiciel de messagerie s'ouvre avec le message pré-rempli. À très vite !";
-      form.reset();
+      msg.className = "formmsg ok";
+      msg.textContent = "Votre messagerie s'ouvre avec le message pré-rempli. À très vite.";
+      f.reset();
     });
   })();
 
   /* ---------------------------------------------------------
-     14. Retour en haut
-     --------------------------------------------------------- */
-  (function toTop() {
-    var btn = $(".to-top");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
-    });
-  })();
-
-  /* ---------------------------------------------------------
-     15. Année courante
+     12. Année
      --------------------------------------------------------- */
   $$("[data-year]").forEach(function (e) { e.textContent = new Date().getFullYear(); });
 })();

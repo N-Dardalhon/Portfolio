@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Nathan Dardalhon</title>
+<meta name="description" content="Contacter Nathan Dardalhon, développeur full stack à Sète : email, téléphone, LinkedIn, GitHub et CV.">
+<meta name="theme-color" content="#08080a">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body id="top">
+
+<div class="veil">
+  <div class="veil__row"><span>Chargement</span><span class="veil__num">000</span></div>
+  <div class="veil__line"><i></i></div>
+</div>
+
+<canvas class="scene" data-scene="hero" data-variant="page"></canvas>
+<div class="noise"></div>
+<div class="progress"></div>
+
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="brand__dot"></span>
+    <span>Nathan Dardalhon<small>Développeur full stack</small></span>
+  </a>
+  <div class="menu">
+    <a href="index.html">Accueil</a>
+    <a href="projets.html">Projets</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="alternance.html">Alternance</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <button class="burger" type="button" aria-label="Menu"><span></span><span></span></button>
+</nav>
+
+<div class="sheet">
+  <a href="index.html">Accueil</a>
+  <a href="projets.html">Projets</a>
+  <a href="parcours.html">Parcours</a>
+  <a href="alternance.html">Alternance</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<main class="shell">
+
+  <header class="phead">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Fil d'Ariane">
+        <a href="index.html">Accueil</a><span>/</span><span style="color:var(--txt)">Contact</span>
+      </nav>
+      <h1 class="d1">Parlons-<span class="it">en</span></h1>
+      <p class="body" style="max-width:52ch;margin-top:26px">
+        Alternance en Master, mission freelance ou simple discussion technique : le plus rapide
+        reste l'email ou LinkedIn. Je réponds sous 48 heures.
+      </p>
+    </div>
+  </header>
+
+  <section class="sect--sm" style="padding-top:0">
+    <div class="wrap grid-2">
+
+      <form id="contact-form" novalidate data-rise>
+        <span class="label">Écrire un message</span>
+        <div style="margin-top:28px">
+          <div class="field">
+            <input type="text" id="c-name" name="name" placeholder=" " autocomplete="name">
+            <label for="c-name">Votre nom</label>
+          </div>
+          <div class="field">
+            <input type="email" id="c-mail" name="email" placeholder=" " autocomplete="email">
+            <label for="c-mail">Votre email</label>
+          </div>
+          <div class="field">
+            <input type="text" id="c-subj" name="subject" placeholder=" ">
+            <label for="c-subj">Sujet</label>
+          </div>
+          <div class="field">
+            <textarea id="c-msg" name="message" placeholder=" "></textarea>
+            <label for="c-msg">Votre message</label>
+          </div>
+        </div>
+        <p style="margin-top:30px">
+          <button class="btn btn--fill" type="submit">Envoyer <span class="btn__ico">→</span></button>
+        </p>
+        <p class="formnote">Le formulaire ouvre votre logiciel de messagerie avec le message pré-rempli.</p>
+        <div class="formmsg" role="status"></div>
+      </form>
+
+      <div data-rise data-delay="0.08">
+        <span class="label">Coordonnées</span>
+        <div class="linklist" style="margin-top:28px">
+          <a href="mailto:nathan.dardalhon@etu.umontpellier.fr">
+            <span class="k">Email</span><span class="v">nathan.dardalhon@etu.umontpellier.fr</span>
+          </a>
+          <a href="tel:+33784676886">
+            <span class="k">Téléphone</span><span class="v">07 84 67 68 86</span>
+          </a>
+          <span class="li">
+            <span class="k">Adresse</span><span class="v">6 Quai du Port St Clair, 34200 Sète</span>
+          </span>
+          <a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener">
+            <span class="k">LinkedIn</span><span class="v">nathan-dardalhon ↗</span>
+          </a>
+          <a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">
+            <span class="k">GitHub</span><span class="v">N-Dardalhon ↗</span>
+          </a>
+          <a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener">
+            <span class="k">Instagram</span><span class="v">nathan.dhn ↗</span>
+          </a>
+          <a href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">
+            <span class="k">CV</span><span class="v">Télécharger le PDF ↓</span>
+          </a>
+        </div>
+
+        <div class="card" style="margin-top:34px">
+          <span class="card__k">Ce que je cherche</span>
+          <p class="body">
+            Une <strong>alternance en Master Informatique</strong> pour la rentrée 2026, à
+            Montpellier ou à Lyon, orientée génie logiciel ou développement web avancé.
+            Permis B, véhiculé, mobile.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__k">Nathan Dardalhon</div>
+        <p class="body" style="max-width:32ch;font-size:.9rem">
+          Développeur full stack en alternance chez Keole / Gazoline. Disponible pour un Master
+          en alternance à la rentrée 2026.
+        </p>
+      </div>
+      <div>
+        <div class="foot__k">Pages</div>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="parcours.html">Parcours</a></li>
+          <li><a href="alternance.html">Alternance</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot__k">Ailleurs</div>
+        <ul>
+          <li><a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">CV (PDF) ↓</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span data-year>2026</span> — Sète, France</span>
+      <span>HTML · CSS · JavaScript · Three.js</span>
+      <a href="#top">Haut de page ↑</a>
+    </div>
+  </div>
+</footer>
+
+<button class="up" type="button" aria-label="Haut de page">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="assets/js/three-core.js"></script>
+<script src="assets/js/scene-hero.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

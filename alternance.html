@@ -5,271 +5,233 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alternance Keole / Gazoline — Nathan Dardalhon</title>
 <meta name="description" content="Deux ans d'alternance en développement web full stack chez Keole / Gazoline : Symfony, PrestaShop, WordPress et le projet mybateau.fr.">
-<meta name="theme-color" content="#050508">
-
+<meta name="theme-color" content="#08080a">
 <link rel="icon" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/app.css">
 </head>
-
 <body id="top">
 
-<div class="loader">
-  <div class="loader__inner">
-    <div class="loader__name">ALTERNANCE</div>
-    <div class="loader__bar"><i></i></div>
-    <div class="loader__pct">000 %</div>
-  </div>
+<div class="veil">
+  <div class="veil__row"><span>Chargement</span><span class="veil__num">000</span></div>
+  <div class="veil__line"><i></i></div>
 </div>
 
-<canvas id="bg-canvas" data-mode="page"></canvas>
-<div class="bg-grid"></div>
-<div class="bg-vignette"></div>
-<div class="bg-grain"></div>
+<canvas class="scene" data-scene="field"></canvas>
+<div class="noise"></div>
+<div class="progress"></div>
 
-<nav class="nav" id="nav">
-  <a class="nav__brand" href="index.html">
-    <span class="nav__mark">ND</span>
-    <span>Nathan Dardalhon</span>
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="brand__dot"></span>
+    <span>Nathan Dardalhon<small>Développeur full stack</small></span>
   </a>
-  <ul class="nav__list">
-    <li><a class="nav__link" href="index.html">Accueil</a></li>
-    <li><a class="nav__link" href="index.html#profil">Profil</a></li>
-    <li><a class="nav__link" href="index.html#projets">Projets</a></li>
-    <li><a class="nav__link" href="index.html#parcours">Parcours</a></li>
-    <li><a class="nav__link" href="index.html#competences">Compétences</a></li>
-    <li><a class="nav__link is-active" href="alternance.html">Alternance</a></li>
-  </ul>
-  <a class="btn btn--primary btn--sm nav__cta" href="index.html#contact" data-magnetic="0.22">
-    Me contacter <i class="fa-solid fa-arrow-right"></i>
-  </a>
-  <button class="nav__burger" type="button" aria-label="Ouvrir le menu">
-    <span></span><span></span>
-  </button>
-  <div class="nav__scroll"><i></i></div>
+  <div class="menu">
+    <a href="index.html">Accueil</a>
+    <a href="projets.html">Projets</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="alternance.html">Alternance</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <button class="burger" type="button" aria-label="Menu"><span></span><span></span></button>
 </nav>
 
-<div class="drawer">
+<div class="sheet">
   <a href="index.html">Accueil</a>
-  <a href="index.html#profil">Profil</a>
-  <a href="index.html#projets">Projets</a>
-  <a href="index.html#parcours">Parcours</a>
-  <a href="index.html#competences">Compétences</a>
+  <a href="projets.html">Projets</a>
+  <a href="parcours.html">Parcours</a>
   <a href="alternance.html">Alternance</a>
-  <a href="index.html#contact">Contact</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <main class="shell">
 
-  <!-- ============ En-tête ============ -->
-  <header class="page-hero">
+  <header class="phead">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Fil d'Ariane">
-        <a href="index.html">Accueil</a> <span>/</span> <span style="color:var(--txt)">Alternance</span>
+      <nav class="crumb" aria-label="Fil d'Ariane">
+        <a href="index.html">Accueil</a><span>/</span><span style="color:var(--txt)">Alternance</span>
       </nav>
-
-      <span class="hero__badge"><i class="dot-live"></i> Septembre 2024 — Août 2026</span>
-
-      <h1 class="h-xl" style="margin-top:24px;max-width:16ch">
-        Keole <span class="grad-text">&amp;</span> Gazoline
-      </h1>
-
-      <p class="lead" style="margin-top:22px;max-width:62ch">
-        Développeur web full stack en alternance pendant les deux dernières années de mon
-        BUT Informatique. Trois jours en entreprise, deux jours à l'IUT, et des projets clients
-        qui partent réellement en production.
+      <span class="avail"><i class="pulse"></i> Septembre 2024 — Août 2026</span>
+      <h1 class="d1" style="margin-top:22px">Keole <span class="it">&amp;</span> Gazoline</h1>
+      <p class="body" style="max-width:58ch;margin-top:26px">
+        Développeur web full stack en alternance pendant les deux dernières années de mon BUT
+        Informatique. Trois jours en entreprise, deux jours à l'IUT, et des projets clients qui
+        partent réellement en production.
       </p>
 
-      <div class="hero__meta" style="max-width:860px">
-        <div><dt>Entreprise</dt><dd>Keole / Gazoline</dd></div>
-        <div><dt>Poste</dt><dd>Développeur full stack</dd></div>
-        <div><dt>Rythme</dt><dd>3 jours / 2 jours</dd></div>
+      <dl class="deflist" style="margin-top:44px;max-width:640px">
+        <div><dt>Entreprise</dt><dd>Keole / Gazoline — Sète</dd></div>
+        <div><dt>Poste</dt><dd>Développeur web full stack</dd></div>
+        <div><dt>Durée</dt><dd>Septembre 2024 — Août 2026</dd></div>
+        <div><dt>Rythme</dt><dd>3 jours entreprise / 2 jours IUT</dd></div>
         <div><dt>Stack</dt><dd>Symfony · PrestaShop · WordPress</dd></div>
-      </div>
+      </dl>
     </div>
   </header>
 
-  <!-- ============ Présentation ============ -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="grid-2">
-        <div class="card" data-glow data-reveal="left">
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-solid fa-building"></i></span>
-          <h2 class="h-md">L'entreprise</h2>
-          <p class="lead" style="margin-top:14px">
-            <strong style="color:var(--txt)">Keole / Gazoline</strong> conçoit et maintient des
-            solutions web sur mesure pour ses clients. J'y ai rejoint une équipe de développeurs
-            expérimentés, sur des projets allant du site vitrine à la plateforme e-commerce
-            complexe.
-          </p>
-        </div>
-
-        <div class="card" data-glow data-reveal data-delay="0.08">
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-solid fa-graduation-cap"></i></span>
-          <h2 class="h-md">Le cadre</h2>
-          <p class="lead" style="margin-top:14px">
-            Dans le cadre de mon <strong style="color:var(--txt)">BUT Informatique</strong> à l'IUT
-            de Montpellier-Sète (parcours <em>Réalisation d'applications</em>), cette alternance me
-            permet d'appliquer immédiatement ce que j'apprends — et, surtout, d'apprendre ce que
-            l'école ne peut pas enseigner : le contact client, les délais, la production.
-          </p>
-        </div>
+  <!-- ===== Cadre ===== -->
+  <section class="sect--sm">
+    <div class="wrap grid-2">
+      <div class="card" data-rise>
+        <span class="card__k">L'entreprise</span>
+        <p class="body">
+          <strong>Keole / Gazoline</strong> conçoit et maintient des solutions web sur mesure
+          pour ses clients. J'y ai rejoint une équipe de développeurs expérimentés, sur des
+          projets allant du site vitrine à la plateforme e-commerce complexe.
+        </p>
+      </div>
+      <div class="card" data-rise data-delay="0.08">
+        <span class="card__k">Le cadre</span>
+        <p class="body">
+          Dans le cadre de mon <strong>BUT Informatique</strong> à l'IUT de Montpellier-Sète
+          (parcours <em>Réalisation d'applications</em>), cette alternance me permet d'appliquer
+          immédiatement ce que j'apprends — et surtout d'apprendre ce que l'école ne peut pas
+          enseigner : le contact client, les délais, la production.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ============ Missions ============ -->
-  <section class="section section--tight" id="missions">
+  <!-- ===== Missions ===== -->
+  <section class="sect" id="missions">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Au quotidien</span>
-        <h2 class="h-lg split">Mes missions en entreprise.</h2>
+      <div class="head" data-rise>
+        <span class="label">Au quotidien</span>
+        <h2 class="d2 spl">Mes missions en entreprise.</h2>
       </div>
 
-      <div class="grid-3">
-        <article class="card card--hover" data-glow data-tilt="5" data-reveal>
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-brands fa-wordpress"></i></span>
-          <h3 class="h-md">Développement WordPress</h3>
-          <p class="lead" style="margin-top:12px;font-size:.95rem">
-            Création et personnalisation de thèmes pour des clients variés, développement de plugins
-            sur mesure, intégration de contenu et optimisation des performances.
+      <div class="grid-3" style="margin-top:clamp(36px,4vw,60px)">
+        <article class="card" data-rise>
+          <span class="card__k">01 — CMS</span>
+          <h3 class="d4">Développement WordPress</h3>
+          <p class="body">
+            Création et personnalisation de thèmes pour des clients variés, développement de
+            plugins sur mesure, intégration de contenu et optimisation des performances.
           </p>
-          <ul class="check-list">
-            <li><i class="fa-solid fa-check"></i> Thèmes enfants personnalisés</li>
-            <li><i class="fa-solid fa-check"></i> Plugins sur mesure en PHP</li>
-            <li><i class="fa-solid fa-check"></i> Optimisation SEO on-page</li>
-            <li><i class="fa-solid fa-check"></i> Maintenance &amp; mises à jour</li>
+          <ul class="ticks">
+            <li>Thèmes enfants personnalisés</li>
+            <li>Plugins sur mesure en PHP</li>
+            <li>Optimisation SEO on-page</li>
+            <li>Maintenance &amp; mises à jour</li>
           </ul>
         </article>
 
-        <article class="card card--hover" data-glow data-tilt="5" data-reveal data-delay="0.08">
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-solid fa-bag-shopping"></i></span>
-          <h3 class="h-md">E-commerce PrestaShop</h3>
-          <p class="lead" style="margin-top:12px;font-size:.95rem">
+        <article class="card" data-rise data-delay="0.08">
+          <span class="card__k">02 — E-commerce</span>
+          <h3 class="d4">Boutiques PrestaShop</h3>
+          <p class="body">
             Développement et maintenance de boutiques en ligne : personnalisation de l'interface,
             modules de paiement, catalogues produits et règles de livraison.
           </p>
-          <ul class="check-list">
-            <li><i class="fa-solid fa-check"></i> Modules PrestaShop personnalisés</li>
-            <li><i class="fa-solid fa-check"></i> Thèmes &amp; UI sur mesure</li>
-            <li><i class="fa-solid fa-check"></i> Intégration Stripe / PayPal</li>
-            <li><i class="fa-solid fa-check"></i> Gestion stocks &amp; commandes</li>
+          <ul class="ticks">
+            <li>Modules PrestaShop personnalisés</li>
+            <li>Thèmes &amp; UI sur mesure</li>
+            <li>Intégration Stripe / PayPal</li>
+            <li>Gestion stocks &amp; commandes</li>
           </ul>
         </article>
 
-        <article class="card card--hover" data-glow data-tilt="5" data-reveal data-delay="0.16">
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-brands fa-symfony"></i></span>
-          <h3 class="h-md">Développement Symfony</h3>
-          <p class="lead" style="margin-top:12px;font-size:.95rem">
+        <article class="card" data-rise data-delay="0.16">
+          <span class="card__k">03 — Applicatif</span>
+          <h3 class="d4">Développement Symfony</h3>
+          <p class="body">
             Conception d'applications web avec le framework Symfony : architectures MVC robustes,
             entités Doctrine, APIs et sécurisation des accès.
           </p>
-          <ul class="check-list">
-            <li><i class="fa-solid fa-check"></i> Architecture MVC &amp; bundles</li>
-            <li><i class="fa-solid fa-check"></i> ORM Doctrine / migrations</li>
-            <li><i class="fa-solid fa-check"></i> Création d'APIs REST</li>
-            <li><i class="fa-solid fa-check"></i> Sécurité &amp; authentification</li>
+          <ul class="ticks">
+            <li>Architecture MVC &amp; bundles</li>
+            <li>ORM Doctrine / migrations</li>
+            <li>Création d'APIs REST</li>
+            <li>Sécurité &amp; authentification</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ Projet phare ============ -->
-  <section class="section" id="mybateau">
+  <!-- ===== Projet phare ===== -->
+  <section class="sect" id="mybateau">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Projet phare</span>
-        <h2 class="h-lg split">mybateau.fr</h2>
-        <p class="lead" data-reveal>Un site de vente de bateaux neufs et d'occasion, suivi de la rédaction des spécifications jusqu'à la mise en ligne.</p>
+      <div class="head" data-rise>
+        <span class="label">Projet phare</span>
+        <h2 class="d2"><span class="it">mybateau.fr</span></h2>
+        <p class="body">
+          Un site de vente de bateaux neufs et d'occasion, suivi de la rédaction des
+          spécifications jusqu'à la mise en ligne.
+        </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card" data-glow data-reveal="left">
-          <div class="card__glow"></div>
-          <h3 class="h-md">Ce que j'ai fait</h3>
-          <ul class="check-list" style="margin-top:20px">
-            <li><i class="fa-solid fa-circle-check"></i> Participation aux réunions client pour recueillir les besoins et rédiger les spécifications</li>
-            <li><i class="fa-solid fa-circle-check"></i> Développement front-end responsive (HTML5, CSS3, JavaScript)</li>
-            <li><i class="fa-solid fa-circle-check"></i> Intégration back-end Symfony : annonces, utilisateurs et filtres de recherche</li>
-            <li><i class="fa-solid fa-circle-check"></i> Optimisation UX : parcours simplifié jusqu'à la prise de contact</li>
-            <li><i class="fa-solid fa-circle-check"></i> Tests fonctionnels en condition réelle et corrections post-mise en ligne</li>
+      <div class="grid-2" style="margin-top:clamp(36px,4vw,60px)">
+        <div data-rise>
+          <h3 class="d4">Ce que j'ai fait</h3>
+          <ul class="ticks">
+            <li>Participation aux réunions client pour recueillir les besoins et rédiger les spécifications.</li>
+            <li>Développement front-end responsive en HTML5, CSS3 et JavaScript.</li>
+            <li>Intégration back-end Symfony : annonces, utilisateurs et filtres de recherche.</li>
+            <li>Optimisation UX : parcours simplifié jusqu'à la prise de contact.</li>
+            <li>Tests fonctionnels en condition réelle et corrections post-mise en ligne.</li>
           </ul>
         </div>
 
-        <div class="card" data-glow data-reveal data-delay="0.08">
-          <div class="card__glow"></div>
-          <h3 class="h-md" style="margin-bottom:24px">Technologies mobilisées</h3>
-
+        <div data-rise data-delay="0.08">
+          <h3 class="d4" style="margin-bottom:26px">Technologies mobilisées</h3>
           <div class="meter">
-            <div class="meter__top"><b>Symfony</b><span>75 %</span></div>
-            <div class="meter__bar"><i data-value="75"></i></div>
+            <div class="meter__t"><b>Symfony</b><span>75 %</span></div>
+            <div class="meter__b"><i data-value="75"></i></div>
           </div>
           <div class="meter">
-            <div class="meter__top"><b>HTML5 / CSS3</b><span>90 %</span></div>
-            <div class="meter__bar"><i data-value="90"></i></div>
+            <div class="meter__t"><b>HTML5 / CSS3</b><span>90 %</span></div>
+            <div class="meter__b"><i data-value="90"></i></div>
           </div>
           <div class="meter">
-            <div class="meter__top"><b>JavaScript</b><span>80 %</span></div>
-            <div class="meter__bar"><i data-value="80"></i></div>
+            <div class="meter__t"><b>JavaScript</b><span>80 %</span></div>
+            <div class="meter__b"><i data-value="80"></i></div>
           </div>
           <div class="meter">
-            <div class="meter__top"><b>MySQL / Doctrine</b><span>65 %</span></div>
-            <div class="meter__bar"><i data-value="65"></i></div>
+            <div class="meter__t"><b>MySQL / Doctrine</b><span>65 %</span></div>
+            <div class="meter__b"><i data-value="65"></i></div>
           </div>
           <div class="meter" style="margin-bottom:0">
-            <div class="meter__top"><b>Git / GitHub</b><span>85 %</span></div>
-            <div class="meter__bar"><i data-value="85"></i></div>
+            <div class="meter__t"><b>Git / GitHub</b><span>85 %</span></div>
+            <div class="meter__b"><i data-value="85"></i></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Apports ============ -->
-  <section class="section section--tight">
+  <!-- ===== Apports ===== -->
+  <section class="sect--sm">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Bilan humain</span>
-        <h2 class="h-lg split">Ce que l'alternance m'a apporté.</h2>
+      <div class="head" data-rise>
+        <span class="label">Bilan humain</span>
+        <h2 class="d2 spl">Ce que l'alternance m'a apporté.</h2>
       </div>
 
-      <div class="grid-3">
-        <article class="card card--hover" data-glow data-reveal>
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-solid fa-users"></i></span>
-          <h3 class="h-md">Travail en équipe</h3>
-          <p class="lead" style="margin-top:12px;font-size:.95rem">
+      <div class="grid-3" style="margin-top:clamp(36px,4vw,56px)">
+        <article class="card" data-rise>
+          <span class="card__k">Collectif</span>
+          <h3 class="d4">Travail en équipe</h3>
+          <p class="body">
             Collaboration quotidienne avec des développeurs expérimentés, rituels agiles (daily,
             sprint review) et suivi des tâches sur Jira / Trello.
           </p>
         </article>
-
-        <article class="card card--hover" data-glow data-reveal data-delay="0.08">
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-solid fa-arrow-trend-up"></i></span>
-          <h3 class="h-md">Montée en compétences</h3>
-          <p class="lead" style="margin-top:12px;font-size:.95rem">
-            Symfony, PrestaShop et WordPress appris en conditions réelles, sur des projets complexes
-            avec de vraies contraintes de délai et de qualité.
+        <article class="card" data-rise data-delay="0.08">
+          <span class="card__k">Technique</span>
+          <h3 class="d4">Montée en compétences</h3>
+          <p class="body">
+            Symfony, PrestaShop et WordPress appris en conditions réelles, sur des projets
+            complexes avec de vraies contraintes de délai et de qualité.
           </p>
         </article>
-
-        <article class="card card--hover" data-glow data-reveal data-delay="0.16">
-          <div class="card__glow"></div>
-          <span class="icon-badge"><i class="fa-solid fa-briefcase"></i></span>
-          <h3 class="h-md">Sens des responsabilités</h3>
-          <p class="lead" style="margin-top:12px;font-size:.95rem">
+        <article class="card" data-rise data-delay="0.16">
+          <span class="card__k">Posture</span>
+          <h3 class="d4">Sens des responsabilités</h3>
+          <p class="body">
             Gestion autonome de fonctionnalités entières, participation aux réunions clients et
             mises en production ayant un impact direct sur les utilisateurs.
           </p>
@@ -278,90 +240,103 @@
     </div>
   </section>
 
-  <!-- ============ Bilan ============ -->
-  <section class="section">
+  <!-- ===== Bilan ===== -->
+  <section class="sect">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" data-reveal>Recul</span>
-        <h2 class="h-lg split">Mon bilan, sans filtre.</h2>
+      <div class="head" data-rise>
+        <span class="label">Recul</span>
+        <h2 class="d2 spl">Mon bilan, sans filtre.</h2>
       </div>
 
-      <div class="grid-2">
-        <div data-reveal="left">
-          <h3 class="h-md" style="margin-bottom:6px">Points forts</h3>
-          <ul class="check-list">
-            <li><i class="fa-solid fa-check"></i> Compréhension du cycle de vie complet d'un projet web en entreprise</li>
-            <li><i class="fa-solid fa-check"></i> Maîtrise des frameworks métier : Symfony, PrestaShop, WordPress</li>
-            <li><i class="fa-solid fa-check"></i> Communication avec les clients et traduction de leurs besoins en specs</li>
-            <li><i class="fa-solid fa-check"></i> Autonomie et prise d'initiative sur des tâches concrètes</li>
-            <li><i class="fa-solid fa-check"></i> Rigueur dans le versionnement : branches, pull requests, revues</li>
+      <div class="grid-2" style="margin-top:clamp(36px,4vw,60px)">
+        <div data-rise>
+          <h3 class="d4">Points forts</h3>
+          <ul class="ticks">
+            <li>Compréhension du cycle de vie complet d'un projet web en entreprise.</li>
+            <li>Maîtrise des frameworks métier : Symfony, PrestaShop, WordPress.</li>
+            <li>Communication avec les clients et traduction de leurs besoins en spécifications.</li>
+            <li>Autonomie et prise d'initiative sur des tâches concrètes.</li>
+            <li>Rigueur dans le versionnement : branches, pull requests, revues.</li>
           </ul>
         </div>
 
-        <div data-reveal data-delay="0.08">
-          <h3 class="h-md" style="margin-bottom:6px">Axes d'amélioration</h3>
-          <ul class="check-list arrow-list">
-            <li><i class="fa-solid fa-arrow-right"></i> Approfondir les tests automatisés (PHPUnit, Jest)</li>
-            <li><i class="fa-solid fa-arrow-right"></i> Renforcer mes connaissances DevOps : CI/CD, Docker</li>
-            <li><i class="fa-solid fa-arrow-right"></i> Mieux gérer mon temps sur des projets multi-clients simultanés</li>
+        <div data-rise data-delay="0.08">
+          <h3 class="d4">Axes d'amélioration</h3>
+          <ul class="ticks">
+            <li>Approfondir les tests automatisés (PHPUnit, Jest).</li>
+            <li>Renforcer mes connaissances DevOps : CI/CD, Docker.</li>
+            <li>Mieux gérer mon temps sur des projets multi-clients simultanés.</li>
           </ul>
 
-          <div class="pull-quote" style="margin-top:32px">
-            <p>
-              « L'alternance m'a fait passer du statut d'étudiant à celui de développeur. C'est une
-              expérience irremplaçable pour comprendre ce que signifie vraiment produire du code en
-              conditions réelles. »
-            </p>
-            <footer>Nathan Dardalhon</footer>
-          </div>
+          <blockquote class="quote-box" style="margin-top:34px;font-family:var(--f-serif);font-style:italic;font-size:1.15rem;line-height:1.5;color:var(--txt)">
+            « L'alternance m'a fait passer du statut d'étudiant à celui de développeur. C'est une
+            expérience irremplaçable pour comprendre ce que signifie vraiment produire du code en
+            conditions réelles. »
+          </blockquote>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CTA ============ -->
-  <section class="section section--tight">
+  <section class="sect--sm">
     <div class="wrap">
-      <div class="feature" data-glow data-reveal="scale" style="text-align:center;grid-template-columns:1fr">
-        <div style="max-width:640px;margin-inline:auto">
-          <h2 class="h-lg">La suite s'écrit maintenant</h2>
-          <p class="lead" style="margin-top:16px">
-            Je recherche une alternance en Master Informatique pour la rentrée 2026. Si mon profil
-            vous parle, écrivons-nous.
-          </p>
-          <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
-            <a class="btn btn--primary" href="index.html#contact" data-magnetic="0.25">
-              Me contacter <i class="fa-solid fa-paper-plane"></i>
-            </a>
-            <a class="btn btn--ghost" href="index.html" data-magnetic="0.2">
-              <i class="fa-solid fa-arrow-left"></i> Retour au portfolio
-            </a>
-          </div>
-        </div>
+      <hr class="rule">
+      <div style="padding-top:clamp(36px,5vw,64px);display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+        <p class="body" style="max-width:46ch;margin:0">
+          Je recherche une alternance en Master Informatique pour la rentrée 2026.
+        </p>
+        <span style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn" href="projets.html">Voir les projets <span class="btn__ico">→</span></a>
+          <a class="btn btn--fill" href="contact.html">Me contacter <span class="btn__ico">→</span></a>
+        </span>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="wrap footer__row">
-    <span>© <span data-year>2026</span> Nathan Dardalhon — Tous droits réservés</span>
-    <span>Construit à la main · HTML, CSS, JavaScript &amp; Three.js</span>
-    <a href="#top">Retour en haut ↑</a>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__k">Nathan Dardalhon</div>
+        <p class="body" style="max-width:32ch;font-size:.9rem">
+          Développeur full stack en alternance chez Keole / Gazoline. Disponible pour un Master
+          en alternance à la rentrée 2026.
+        </p>
+      </div>
+      <div>
+        <div class="foot__k">Pages</div>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="parcours.html">Parcours</a></li>
+          <li><a href="alternance.html">Alternance</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot__k">Ailleurs</div>
+        <ul>
+          <li><a href="https://github.com/N-Dardalhon" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://fr.linkedin.com/in/nathan-dardalhon-846a5b233" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://www.instagram.com/nathan.dhn/" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="img/Cv_Dardalhon.pdf" download="Nathan_Dardalhon_CV.pdf">CV (PDF) ↓</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span data-year>2026</span> — Sète, France</span>
+      <span>HTML · CSS · JavaScript · Three.js</span>
+      <a href="#top">Haut de page ↑</a>
+    </div>
   </div>
 </footer>
 
-<button class="to-top" type="button" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+<button class="up" type="button" aria-label="Haut de page">↑</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/shaders/CopyShader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/EffectComposer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/RenderPass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/ShaderPass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-<script src="assets/js/scene.js"></script>
+<script src="assets/js/three-core.js"></script>
+<script src="assets/js/scene-field.js"></script>
 <script src="assets/js/app.js"></script>
-
 </body>
 </html>
